@@ -20,5 +20,4 @@ This codebase is currently undergoing fairly sweeping changes. While we'll try o
 > ```
 
 # Boxlist Format //盒子列表 形式
-The first line of the boxlist file defines the X, Y, and Z dimensions of the pallet in which all the boxes are to be packed 
-> 
+The first line of the boxlist file defines the X, Y, and Z dimensions of the pallet in which all the boxes are to be packed. Each successive line begins with a box number, then has the x, y and z dimensions of the box, and finally how many of this box are to be packed onto a pallet. A series of sample boxlist was [provided in the doc directory]().
