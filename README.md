@@ -29,7 +29,17 @@ and *** a REPORT ***
 > ---------------------------------------------------------------------------------------------
 > ELAPSED TIME //花费时间                                   : **X** sec
 > TOTAL NUMBER OF ITERATIONS DONE //总计完成的迭代次数        : **X**
-> BEST SOLUTION FOUND AT ITERATION //迭代过程中找到的最优解    : **X** OF VARIANT: **X**
+> BEST SOLUTION FOUND AT ITERATION //迭代过程中找到的最优解   : **X** OF VARIANT: **X**
 > TOTAL NUMBER OF BOXES //盒子数量                          : **X**
-  
+> PACKED NUMBER OF BOXES //打包起的盒子数量                  : **X**
+> TOTAL VOLUME OF ALL BOXES //所有盒子的体积                 : **X**
+> PALLET VOLUME //托盘的体积                                : **X**
+> BEST SOLUTION'S VOLUME UTILIZATION //体积利用率           : **X** OUT OF **X**
+> PERCENTAGE OF PALLET VOLUME USED //托盘体积使用率          : 100.000000 %
+> PERCENTAGE OF PACKED BOXES (VOLUME) //打包盒（体积）比例    : 100.000000 %
+> WHILE PALLET ORIENTATION //托盘朝向                       : X=; Y=; Z=
+> ---------------------------------------------------------------------------------------------
+>   NO: PACKSTA DIMEN-1  DMEN-2  DIMEN-3   COOR-X   COOR-Y   COOR-Z   PACKEDX  PACKEDY  PACKEDZ
+> ---------------------------------------------------------------------------------------------
+> *** LIST OF UNPACKED BOXES ***
 > ```  
