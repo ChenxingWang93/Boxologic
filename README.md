@@ -20,4 +20,16 @@ This codebase is currently undergoing fairly sweeping changes. While we'll try o
 > ```
 
 # Boxlist Format //盒子列表 形式
-The first line of the boxlist file defines the X, Y, and Z dimensions of the pallet in which all the boxes are to be packed. Each successive line begins with a box number, then has the x, y and z dimensions of the box, and finally how many of this box are to be packed onto a pallet. A series of sample boxlist was [provided in the doc directory]().
+The first line of the boxlist file defines the X, Y, and Z dimensions of the pallet in which all the boxes are to be packed. Each successive line begins with a box number, then has the x, y and z dimensions of the box, and finally how many of this box are to be packed onto a pallet. A series of sample boxlist was [provided in the doc directory](). // 提供一系列测试用的 boxlist 
+
+and *** a REPORT ***
+> ``` C
+> ---------------------------------------------------------------------------------------------
+>                                         *** REPORT ***  
+> ---------------------------------------------------------------------------------------------
+> ELAPSED TIME //花费时间                                   : **X** sec
+> TOTAL NUMBER OF ITERATIONS DONE //总计完成的迭代次数        : **X**
+> BEST SOLUTION FOUND AT ITERATION //迭代过程中找到的最优解    : **X** OF VARIANT: **X**
+> TOTAL NUMBER OF BOXES //盒子数量                          : **X**
+  
+> ```  
