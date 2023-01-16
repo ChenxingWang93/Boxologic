@@ -10,6 +10,8 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 -第一个是：Boxlist[]array, 保存所有打包盒的尺寸dimensions、坐标coordinates 以及其他必要数据在容器中，在这个 array 中有总计 ***12个字段***
 |Element|Name|Description|
 |-------|----|-----------|
+|1.     |Packst|:Status of packing (0: Not packed; 1: Packed), 打包和没打包两种状态，|
+|2.     |N     |:The number of boxes that have the same dimensions, 有相同尺寸的盒子的数量，|
 
 # Future Plans
 This project uses a fairly old codebase as a launching-off point. The plan is to modernize it a bit, and then add functionality by allowing the user to specify more than one container to be packed, as well as perhaps libraryifying the main code so that you can wrap your own code around it more easily. Keep watching this space for details as they emerge.
