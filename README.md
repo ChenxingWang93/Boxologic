@@ -18,6 +18,13 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 |3.     |Dim1  |:The length of one of the three dimensions, 三个维度中的 一种 “长度”，|
 |4.     |Dim2  |:The length of another ofthe three dimensions, 三个维度中的 另一种 “长度”，|
 |5.     |Dim3  |:The length of the other of the three dimensions, 三个维度中的 其他的 “长度”，|
+|6.     |Cox   |:X-coordinate of the location of the packed box, 打包了的盒子的 X-coordinate, 坐标，|
+|7.     |Coy   |:Y-coordinate of the location of the packed box, 打包了的盒子的 Y-coordinate, 坐标，|
+|8.     |Coz   |:Z-coordinate of the location of the packed box, 打包了的盒子的 Z-coordinate, 坐标，|
+|9.     |Packx |:X-dimension of the orientation of the box as it has been packed, 打包了的盒子的 X-dimension，|
+|10.    |Packy |:Y-dimension of the orientation of the box as it has been packed, 打包了的盒子的 Y-dimension，|
+|11.    |Packz |:Z-dimension of the orientation of the box as it has been packed, 打包了的盒子的 Z-dimension，|
+|12.    |Vol   |Volume of the box (Diml*Dim2*Dim3), 盒子的体积，
 
 # Future Plans
 This project uses a fairly old codebase as a launching-off point. The plan is to modernize it a bit, and then add functionality by allowing the user to specify more than one container to be packed, as well as perhaps libraryifying the main code so that you can wrap your own code around it more easily. Keep watching this space for details as they emerge.
