@@ -24,7 +24,10 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 |9.     |Packx |:X-dimension of the orientation of the box as it has been packed, 打包了的盒子的 X-dimension，|
 |10.    |Packy |:Y-dimension of the orientation of the box as it has been packed, 打包了的盒子的 Y-dimension，|
 |11.    |Packz |:Z-dimension of the orientation of the box as it has been packed, 打包了的盒子的 Z-dimension，|
-|12.    |Vol   |Volume of the box (Diml*Dim2*Dim3), 盒子的体积，
+|12.    |Vol   |Volume of the box (Diml*Dim2*Dim3), 盒子的体积，|
+
+
+
 
 # Future Plans
 This project uses a fairly old codebase as a launching-off point. The plan is to modernize it a bit, and then add functionality by allowing the user to specify more than one container to be packed, as well as perhaps libraryifying the main code so that you can wrap your own code around it more easily. Keep watching this space for details as they emerge.
