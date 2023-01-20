@@ -24,6 +24,20 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 - 一旦打包状态为0: Not packed; 则不会计算盒子的体积
 - 一旦打包状态为1: Packed; 每个盒子会记录在 Boxlist[] array 中
 
+|Element|Name|Description|
+|-------|----|-----------|
+|1.     |Layerdim|:A dimension value, 一个三维值|
+|2.     |Layereval|:Evaluation weight value for the corresponding layerdim value, 给对应的 Layerdim 值 评估 重量值|
+
+我们使用的双向链表 _**double linked list**_ 保持当前边缘层的拓扑结构在 建设中，我们保留每个gap 右下角的x &z 坐标，程序会看到这些gaps 并试图用盒子来一次性填补，并保持层的边缘均匀，每个双向链表 _**double linked list**_ 中的entry 都有这些 data field
+
+|Element|Name|Description|
+|-------|----|-----------|
+|1.     |*pre|: Pointer that keeps the address of the previous entry, 用指针来保留之前入口的地址，|
+|2.     |Cumx|: Keeps the x-coordinate of the gap's right corner, 保持缝隙的x-coordinate处在右上角，|
+|3.     |Cumz|: Keeps the z-coordinate of the gap's right corner, 保持缝隙的x-coordinate处在右上角，|
+|4.     |*pos|: Pointer that keeps the address of the following entry. 用指针来保留随后入口的地址，|
+
 
 ### pseudo-codes of the functions函数伪代码
 
