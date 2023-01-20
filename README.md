@@ -4,13 +4,8 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 # Data Structure 数据结构
 数据结构会影响程序性能和求解时间。对于程序来说，为快速获取数据，使用了2个不同的 ***array*** & 1个 ***double linked list*** 来完成任务
 
-<img width="800" alt="算法流程图1" src="https://user-images.githubusercontent.com/31954987/212693108-75f6604e-9111-41a9-8f90-50e4fb0e4bb2.png">
 
-<img width="800" alt="算法流程图2" src="https://user-images.githubusercontent.com/31954987/212938794-480c4340-d396-4bfc-970a-a54abcaeea76.png">
-
-
-
--第一个是：Boxlist[]array, 保存所有打包盒的尺寸dimensions、坐标coordinates 以及其他必要数据在容器中，在这个 array 中有总计 ***12个字段***
+第一个是：Boxlist[]array, 保存所有打包盒的尺寸dimensions、坐标coordinates 以及其他必要数据在容器中，在这个 array 中有总计 ***12个字段***
 |Element|Name|Description|
 |-------|----|-----------|
 |1.     |Packst|:Status of packing (0: Not packed; 1: Packed), 打包和没打包两种状态，|
@@ -26,8 +21,15 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 |11.    |Packz |:Z-dimension of the orientation of the box as it has been packed, 打包了的盒子的 Z-dimension，|
 |12.    |Vol   |Volume of the box (Diml*Dim2*Dim3), 盒子的体积，|
 
+- 一旦打包状态为0: Not packed; 则不会计算盒子的体积
+- 一旦打包状态为1: Packed; 每个盒子会记录在 Boxlist[] array 中
 
 
+### pseudo-codes of the functions函数伪代码
+
+<img width="800" alt="算法流程图1" src="https://user-images.githubusercontent.com/31954987/212693108-75f6604e-9111-41a9-8f90-50e4fb0e4bb2.png">
+
+<img width="800" alt="算法流程图2" src="https://user-images.githubusercontent.com/31954987/212938794-480c4340-d396-4bfc-970a-a54abcaeea76.png">
 
 # Future Plans
 This project uses a fairly old codebase as a launching-off point. The plan is to modernize it a bit, and then add functionality by allowing the user to specify more than one container to be packed, as well as perhaps libraryifying the main code so that you can wrap your own code around it more easily. Keep watching this space for details as they emerge.
