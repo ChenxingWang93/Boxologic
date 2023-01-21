@@ -50,9 +50,9 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 
 > ``` C
 > Variable assignments:
-> Boxlist[X]=()
-> Boxlist[1]=()
-> Boxlist[2]=()
+> Boxlist[X]=(Packst,   N,    Dim1,   Dim2,   Dim3,   Cox,    Coy,    Coz,    Packx,    Packy,    Packz,        Vol)
+> Boxlist[1]=(     0,   2,   260.7,    897,    1.5,     0,      0,      0,        0,        0,        0,  350771.85)
+> Boxlist[2]=(     0,   2,   260.7,    897,    1.5,     0,      0,      0,        0,        0,        0,  350771.85)
 > Boxlist[3]=()
 > Boxlist[4]=()
 > Boxlist[5]=()
