@@ -53,13 +53,23 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 > Boxlist[X]=(Packst,   N,    Dim1,   Dim2,   Dim3,   Cox,    Coy,    Coz,    Packx,    Packy,    Packz,        Vol)
 > Boxlist[1]=(     0,   2,   260.7,    897,    1.5,     0,      0,      0,        0,        0,        0,  350771.85)
 > Boxlist[2]=(     0,   2,   260.7,    897,    1.5,     0,      0,      0,        0,        0,        0,  350771.85)
-> Boxlist[3]=()
-> Boxlist[4]=()
-> Boxlist[5]=()
-> Boxlist[6]=()
-> Boxlist[7]=()
-> Boxlist[8]=()
+> Boxlist[3]=(     0,   2,   260.7, 1399.5,    1.5,     0,      0,      0,        0,        0,        0, 547274.475)
+> Boxlist[4]=(     0,   2,   260.7, 1399.5,    1.5,     0,      0,      0,        0,        0,        0, 547274.475)
+> Boxlist[5]=(     0,   1,   260.7,  920.7,    1.5,     0,      0,      0,        0,        0,        0, 360039.735)
+> Boxlist[6]=(     0,   1,     910,   2700,    1.5,     0,      0,      0,        0,        0,        0,    3685500)
+> Boxlist[7]=(     0,   1,     910,   2460,    1.5,     0,      0,      0,        0,        0,        0,    3357900)
+> Boxlist[8]=(     0,   1,      60,    595,    1.5,     0,      0,      0,        0,        0,        0,      53550)
 > ```
+
+核心的打包程序函数
+|FUNCTION 函数|PURPOSE 目标|
+|------------|------------|
+|Packlayer() |随着盒子被打包则更新linked list &Boxlist[] array|
+|Findsmallestz()|用smallest z 值来决定当前层盒子的 间隙        |
+|Findbox()   |找到最好 fit 当前间隙的 盒子                    |
+|Analyzebox()|被Findbox()用来 分析 盒子的三维                 |
+|Checkfound()|决定pack 哪一个盒子                            |
+|Execiterations()|call合适的
 
 # Future Plans
 This project uses a fairly old codebase as a launching-off point. The plan is to modernize it a bit, and then add functionality by allowing the user to specify more than one container to be packed, as well as perhaps libraryifying the main code so that you can wrap your own code around it more easily. Keep watching this space for details as they emerge.
