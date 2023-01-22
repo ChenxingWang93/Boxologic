@@ -49,7 +49,7 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/31954987/213875993-3a68e536-2fb1-416f-a7a4-31d07d9d7c6a.png">
 
 > ``` C
-> Variable assignments:
+> Variable assignments:                                                                          XX=104;YY=96;ZZ=84;
 > Boxlist[X]=(Packst,   N,    Dim1,   Dim2,   Dim3,   Cox,    Coy,    Coz,    Packx,    Packy,    Packz,        Vol)
 > Boxlist[1]=(     0,   2,   260.7,    897,    1.5,     0,      0,      0,        0,        0,        0,  350771.85)
 > Boxlist[2]=(     0,   2,   260.7,    897,    1.5,     0,      0,      0,        0,        0,        0,  350771.85)
@@ -69,7 +69,12 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 |Findbox()   |找到最好 fit 当前间隙的 盒子                    |
 |Analyzebox()|被Findbox()用来 分析 盒子的三维                 |
 |Checkfound()|决定pack 哪一个盒子                            |
-|Execiterations()|call合适的
+|Execiterations()|call合适的 函数 来执行 迭代                 |
+|Report()    |复制best-so-far packing                      |
+|Outputboxlist()|Writes 打包信息到文件                       |
+|Graphunpackedout()|Writes 打包顺序                         |
+
+
 
 # Future Plans
 This project uses a fairly old codebase as a launching-off point. The plan is to modernize it a bit, and then add functionality by allowing the user to specify more than one container to be packed, as well as perhaps libraryifying the main code so that you can wrap your own code around it more easily. Keep watching this space for details as they emerge.
