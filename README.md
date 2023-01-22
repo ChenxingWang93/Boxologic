@@ -76,10 +76,14 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 
 Findbox 函数 使用 Analyzebox 函数 分析未打包的盒子。每个不同朝向 的未打包盒子，Analyzebox 函数参数都有:
 > ``` C
-> Hmx   :Maximum available X-dimension of the current gap to be filled. //当前 要填补缝隙中 **最大**可用 X-dimension
-> Hy    :Current layer thickness value. **当前**层厚值 (y轴值)
-> Hmy   :Maximum available Y-dimension of the current gap to be filled. //当前 要填补缝隙中 **最大**可用 Y-dimension
-> Hz    :
+> Hmx   :Maximum available X-dimension of the current gap to be filled.   //当前 要填补缝隙中 **最大**可用 X-dimension
+> Hy    :Current layer thickness value.                                   //**当前**层厚值 (y轴值)
+> Hmy   :Maximum available Y-dimension of the current gap to be filled.   //当前 要填补缝隙中 **最大**可用 Y-dimension
+> Hz    :Z-dimension of the current gap to be filled.                     //要被填充的 **当前**层厚（z轴值）
+> Hmz   :Maximum available z-dimension to the current gap to be filled.   //当前 要填补缝隙中 **最大**可用 Z-dimension
+> Dim1  :
+> Dim2  :
+> Dim3  :
 > ```
 
 # Future Plans
