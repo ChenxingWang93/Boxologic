@@ -76,7 +76,8 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 
 Findbox 函数 使用 Analyzebox 函数 分析未打包的盒子。每个不同朝向 的未打包盒子，Analyzebox 函数参数都有:
 > ``` C
-> 
+> Hmx   :Maximum available X-dimension of the current gap to be filled. //当前 要填补缝隙中 最大可用 X-dimension
+> Hy    :
 > ```
 
 # Future Plans
