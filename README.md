@@ -85,6 +85,8 @@ Findbox 函数 使用 Analyzebox 函数 分析未打包的盒子。每个不同�
 > Dim2  :Y-dimension of the orientation of the box being examined         //盒子 朝向 的Y-dimension
 > Dim3  :Z-dimension of the orientation of the box being examined         //盒子 朝向 的Z-dimension
 > ```
+<img width="800" alt="image01" src="https://user-images.githubusercontent.com/31954987/213901830-7b9a211b-c72f-4c6b-ae07-cc522d150aa9.png">
+
 
 # Future Plans
 This project uses a fairly old codebase as a launching-off point. The plan is to modernize it a bit, and then add functionality by allowing the user to specify more than one container to be packed, as well as perhaps libraryifying the main code so that you can wrap your own code around it more easily. Keep watching this space for details as they emerge.
