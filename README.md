@@ -45,7 +45,7 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 
 <img width="800" alt="算法流程图2" src="https://user-images.githubusercontent.com/31954987/212938794-480c4340-d396-4bfc-970a-a54abcaeea76.png">
 
-### 算法为谓启发式 How Does The Heuristic Work?
+### 算法何谓启发式 How Does The Heuristic Work?
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/31954987/213875993-3a68e536-2fb1-416f-a7a4-31d07d9d7c6a.png">
 
 > ``` C
