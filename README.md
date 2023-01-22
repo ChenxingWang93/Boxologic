@@ -74,7 +74,10 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 |Outputboxlist()|Writes 打包信息到文件                       |
 |Graphunpackedout()|Writes 打包顺序                         |
 
-
+Findbox 函数 使用 Analyzebox 函数 分析未打包的盒子。每个不同朝向 的未打包盒子，Analyzebox 函数参数都有:
+> ``` C
+> 
+> ```
 
 # Future Plans
 This project uses a fairly old codebase as a launching-off point. The plan is to modernize it a bit, and then add functionality by allowing the user to specify more than one container to be packed, as well as perhaps libraryifying the main code so that you can wrap your own code around it more easily. Keep watching this space for details as they emerge.
