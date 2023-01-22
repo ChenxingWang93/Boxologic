@@ -81,9 +81,9 @@ Findbox 函数 使用 Analyzebox 函数 分析未打包的盒子。每个不同�
 > Hmy   :Maximum available Y-dimension of the current gap to be filled.   //当前 要填补缝隙中 **最大**可用 Y-dimension
 > Hz    :Z-dimension of the current gap to be filled.                     //要被填充的 **当前**层厚（z轴值）
 > Hmz   :Maximum available z-dimension to the current gap to be filled.   //当前 要填补缝隙中 **最大**可用 Z-dimension
-> Dim1  :
-> Dim2  :
-> Dim3  :
+> Dim1  :X-dimension of the orientation of the box being examined         //盒子 朝向 的X-dimension
+> Dim2  :Y-dimension of the orientation of the box being examined         //盒子 朝向 的Y-dimension
+> Dim3  :Z-dimension of the orientation of the box being examined         //盒子 朝向 的Z-dimension
 > ```
 
 # Future Plans
