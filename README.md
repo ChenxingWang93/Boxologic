@@ -91,7 +91,30 @@ Findbox 函数 使用 Analyzebox 函数 分析未打包的盒子。每个不同�
 > MAIN
 > /*初始化变量*/
 > FUNCTION INITIALIZE();
-> 
+> /*从输入文件中读取数据 的函数*/
+> FUNCTION INPUTBOXLIST();
+> /*创建 候选Layers[]阵列 的函数*/
+> FUNCTION LISTCANDITLAYERS();
+> /*计算层列表 的函数*/
+> FUNCTION COMPLAYERLIST();
+> /*PACKLAYER层厚 的函数*/
+> FUNCTION PACKLAYER();
+> /*通过检查未打包的盒子找到最合适的层厚值 的函数*/
+> FUNCTION FINDLAYER();
+> /*找到最好fit当前间隙的盒子 的函数*/
+> FUNCTION FINDBOX();
+> /*分析盒子三维 ANALYZEBOX 的函数*/
+> FUNCTION ANALYZEBOX(HMX,HY,HMY,HZ,HMZ,DIM1,DIM2,DIM3);
+> /*用smallest z 值来决定当前层的 盒子间隙 的函数*/
+> FUNCTION FINDSMALLEST();
+> /*决定pack 哪一个盒子 的函数*/
+> FUNCTION CHECKFOUND();
+> /*检查盒子体积 的函数*/
+> FUNCTION VOLUMECHECK();
+> /**/
+> OUTPUTBOXLIST();
+> /*Writes 打包信息到文件 的函数*/
+> FUNCTION REPORT();
 > ```
 
 
