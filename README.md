@@ -39,8 +39,6 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 |4.     |*pos|: Pointer that keeps the address of the following entry. 用指针来保留随后入口的地址，|
 
 
-### pseudo-codes of the functions函数伪代码
-
 ### 数值限制 Numerical Limits
 数据结构模型 model 的限制通过考虑内存限制 memory limitations 平均计算内存容量 average computer memory capacity 以及现实生产中的打包问题 realistic packing problems:
 - maximum number of boxes in a box set 在盒子集中 的盒子最大数量 
@@ -94,6 +92,10 @@ Findbox 函数 使用 Analyzebox 函数 分析未打包的盒子。每个不同�
 > Dim3  :Z-dimension of the orientation of the box being examined         //盒子 朝向 的Z-dimension
 > ```
 <img width="800" alt="image01" src="https://user-images.githubusercontent.com/31954987/213901830-7b9a211b-c72f-4c6b-ae07-cc522d150aa9.png">
+
+
+### pseudo-codes of the functions函数伪代码
+Appendix A - Pseudo-codes of the Functions 函数的伪代码
 
 > ``` C
 > MAIN
