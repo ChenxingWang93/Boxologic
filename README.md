@@ -41,6 +41,14 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 
 ### pseudo-codes of the functions函数伪代码
 
+### 数值限制 Numerical Limits
+数据结构模型 model 的限制通过考虑内存限制 memory limitations 平均计算内存容量 average computer memory capacity 以及现实生产中的打包问题 realistic packing problems:
+- maximum number of boxes in a box set 在盒子集中 的盒子最大数量 
+- number of total different dimension values 不同三维值 的总计数量
+- max dimension length for either pallet or any box 托盘 或者盒子的 最大三维“长度”
+
+### 算法流程图 Flow Chart of the Algorithm
+
 <img width="800" alt="算法流程图1" src="https://user-images.githubusercontent.com/31954987/212693108-75f6604e-9111-41a9-8f90-50e4fb0e4bb2.png">
 
 <img width="800" alt="算法流程图2" src="https://user-images.githubusercontent.com/31954987/212938794-480c4340-d396-4bfc-970a-a54abcaeea76.png">
