@@ -128,6 +128,23 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > ```
 
 #
+> ``` C
+> MAIN
+> /*通过call INITIALIZE() 函数 执行初始化*/
+> Perform initialization by calling INITIALIZE();
+> /**/
+> Get time(START);
+> /*通过call EXECITERATIONS() 执行迭代 &找到最优解的参数*/
+> Execute iterations and find the parameters of the best solution by calling 
+>   EXECITERATIONS();
+> /**/
+> Get time(FINISH);
+> /*使用找到的参数，打包找到的最优解，报告控制器*/
+> Using the parameters found, pack the best solution found, report to the console
+>   and to an output text file by calling REPORT();
+> Wait until a keystroke entered by the user;
+> End;
+> ```
 
 #
 
