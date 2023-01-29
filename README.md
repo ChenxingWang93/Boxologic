@@ -147,7 +147,16 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > ```
 
 #
-
+``` C
+Layers[X]=(Layerdim, Layereval)
+Layers[l]=(70,98)
+Layers[2]=(24, 56)
+Layers[3]=(14,106)
+Layers[4]=(48,100)
+Layers[5]=(40, 80)
+Layers[6]=(52, 80)
+Layers[7]=(36, 72)
+```
 #
 
 #
