@@ -128,6 +128,8 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > ```
 
 #
+
+/*MAIN 函数*/
 > ``` C
 > MAIN
 > /*通过call INITIALIZE() 函数 执行初始化*/
@@ -146,6 +148,15 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > End;
 > ```
 
+#
+
+/*INITIALIZE() 初始化 函数*/
+> ``` C
+> FUNCTION INITIALIZE()
+> Get the input FILENAME from the user; //抓取文件名
+> 
+> Get the pallet and box set data entered by the user from the input file by calling the function INPUTBOXLIS();
+> ```
 #
 ``` C
 Layers[X]=(Layerdim, Layereval)
