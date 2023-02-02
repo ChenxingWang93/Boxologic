@@ -158,19 +158,25 @@ int main(int argc, char *argv[])
 
 void initialize(void) 
 { 
+  /*文件名*/
   if (filename == "")
   {
     printf("\nINVALID FILE NAME\n"); 
     exit(1);
   } 
-  inputboxlist();
-  temp = 1.0; 
-  totalvolume = temp * xx * yy * zz;
-  totalboxvol = 0.0;
+  inputboxlist();                     //call INPUTBOXLIST()函数
+  temp = 1.0;                         //
+  totalvolume = temp * xx * yy * zz;  //计算托盘体积
+  totalboxvol = 0.0;                  //盒子总体积值 = 0.0
+  /*遍历boxlist[x] 列表中的对象*/
   for (x=1; x <= tbn; x++) {
+    /*计算盒子总体积*/
     totalboxvol = totalboxvol + boxlist[x].vol; 
   }
-  
+  /*malloc 动态内存分配
+  sizeof() 内存空间的大小
+  (struct scrappad) 
+  */
   scrapfirst = malloc(sizeof(struct scrappad));
   
   if ((*scrapfirst).pos == NULL) 
@@ -178,6 +184,7 @@ void initialize(void)
     printf("Insufficient memory available\n"); 
     exit(1);
   } 
+  /*初始化变量及其参数*/
   (*scrapfirst).pre = NULL;
   (*scrapfirst).pos = NULL;
   bestvolume = 0.0; 
@@ -238,10 +245,10 @@ void inputboxlist(void)
   return;
 }
 
-//**********************************************************************
-// ITERATIONS ARE DONE AND PARAMETERS OF THE BEST SOLUTION ARE 
+//***************************************************************************************
+// ITERATIONS ARE DONE AND PARAMETERS OF THE BEST SOLUTION ARE 迭代完成 最优解的参数被找到
 // FOUND
-//**********************************************************************
+//***************************************************************************************
 
 void execiterations(void) 
 {
