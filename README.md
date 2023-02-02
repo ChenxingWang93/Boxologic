@@ -156,11 +156,15 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > Get the input FILENAME from the user; //抓取文件名
 > 
 > Get the pallet and box set data entered by the user from the input file by calling the function INPUTBOXLIS();
+> calling the function INPUTBOXLIST();  
+> Calculate the volume of the pallet;   //计算托盘体积
 > ```
+
 #
+
 ``` C
 Layers[X]=(Layerdim, Layereval)
-Layers[l]=(70,98)
+Layers[l]=(70, 98)
 Layers[2]=(24, 56)
 Layers[3]=(14,106)
 Layers[4]=(48,100)
