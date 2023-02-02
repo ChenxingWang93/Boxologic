@@ -221,6 +221,7 @@ void inputboxlist(void)
     exit(1);
   } 
   
+  /*ascii to integer 字符串转换为整型 数的 atoi() 函数*/
   xx = atoi(strxx); 
   yy = atoi(stryy);
   zz = atoi(strzz);
