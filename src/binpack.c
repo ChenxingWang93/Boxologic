@@ -1,6 +1,6 @@
-//**********************
-// INCLUDED HEADER FILES
-//**********************
+//***********************************
+// INCLUDED HEADER FILES 包含头部文件
+//***********************************
 
 #include <time.h>
 #include <stdio.h>
@@ -9,9 +9,9 @@
 #include <malloc.h>
 #include <conio.h>
 
-//**********************
-// FUNCTION PROTOTYPES
-//**********************
+//*****************************
+// FUNCTION PROTOTYPES 函数原型
+//*****************************
 
 void initialize(void);
 void inputboxlist(void);
@@ -29,9 +29,9 @@ void graphunpackedout(void);
 void outputboxlist(void);
 void report(void);
 
-//********************************************************
-// VARIABLE, CONSTANT AND STRUCTURE DECLARATIONS
-//********************************************************
+//********************************************************************
+// VARIABLE, CONSTANT AND STRUCTURE DECLARATIONS 变量，常量和结构体声明
+//********************************************************************
 
 char strpx[5], strpy[5], strpz[5];
 char strcox[5], strcoy[5], strcoz[5];
@@ -111,20 +111,23 @@ time_t start, finish;
 
 FILE *ifp, *ofp, *gfp;
 
-//********************************************************
+//********************
 // MAIN PROGRAM 主程序
-//********************************************************
+//********************
 
 /*
-edited by me
+伪代码 edited by me
+
 MAIN
-//
 Perform initialization by calling INITIALIZE();
 Get time(START);
 Execute iterations and find the parameters of the best solution by calling EXECITERATIONS();
-
-
+Get time(FINISH);
+//使用找到的参数，打包找到的最优解，报告到console
+Using the parameters found, pack the best solution found, report to the console
+and to an output text file by calling REPORT();
 */
+
 int main(int argc, char *argv[]) 
 { 
   if (argc == 1)
@@ -139,19 +142,19 @@ int main(int argc, char *argv[])
     strcpy(filename, argv[1]);
   } 
   
-  initialize();
-  time(&start);
+  initialize();   //执行初始化
+  time(&start);   //开始时间
   printf("\nPRESS Q TO QUIT AT ANYTIME AND WAIT\n\n"); 
-  execiterations();
-  time(&finish);
-  report();
+  execiterations();   //call EXECITERATIONS() 函数 执行迭代找到最优解
+  time(&finish);  //结束时间
+  report(); //call REPORT()函数 到输出文字文件
   getch();
   return 0;
 }
 
-//********************************************************
+//************************************
 // PERFORMS INITIALIZATIONS 执行初始化
-//********************************************************
+//************************************
 
 void initialize(void) 
 { 
@@ -185,10 +188,10 @@ void initialize(void)
 }
          
          
-//**********************************************************************
+//*******************************************************************************************
 // READS THE PALLET AND BOX SET DATA ENTERED BY THE USER FROM 读取托盘（原料）&盒子（订单）数据
 // THE INPUT FILE 从输入文件中读取
-//**********************************************************************
+//*******************************************************************************************
 
 void inputboxlist(void)
 {
@@ -411,7 +414,7 @@ void listcanditlayers(void)
 }
 
 //**********************************************************************
-// REQUIRED FUNCTION FOR QSORT FUNCTION TO WORK
+// REQUIRED FUNCTION FOR QSORT FUNCTION TO WORK QSORT函数工作的前置条件
 //**********************************************************************
 
 int complayerlist(const void *i, const void *j)
