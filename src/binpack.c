@@ -112,18 +112,16 @@ time_t start, finish;
 FILE *ifp, *ofp, *gfp;
 
 //********************************************************
-// MAIN PROGRAM
+// MAIN PROGRAM 主程序
 //********************************************************
 
 /*
 edited by me
 MAIN
 //
-
 Perform initialization by calling INITIALIZE();
 Get time(START);
-Execute iterations and find the parameters of the best solution by calling
-EXECITERATIONS();
+Execute iterations and find the parameters of the best solution by calling EXECITERATIONS();
 
 
 */
@@ -152,7 +150,7 @@ int main(int argc, char *argv[])
 }
 
 //********************************************************
-// PERFORMS INITIALIZATIONS
+// PERFORMS INITIALIZATIONS 执行初始化
 //********************************************************
 
 void initialize(void) 
@@ -188,8 +186,8 @@ void initialize(void)
          
          
 //**********************************************************************
-// READS THE PALLET AND BOX SET DATA ENTERED BY THE USER FROM 
-// THE INPUT FILE
+// READS THE PALLET AND BOX SET DATA ENTERED BY THE USER FROM 读取托盘（原料）&盒子（订单）数据
+// THE INPUT FILE 从输入文件中读取
 //**********************************************************************
 
 void inputboxlist(void)
