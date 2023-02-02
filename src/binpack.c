@@ -202,6 +202,7 @@ void initialize(void)
 
 void inputboxlist(void)
 {
+  
   short int n;
   char lbl[5], dim1[5], dim2[5], dim3[5], boxn[5], strxx[5], stryy[5], strzz[5];
   
