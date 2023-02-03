@@ -312,7 +312,7 @@ void execiterations(void)
       
       layerthickness = layers[layersindex].layerdim; 
       itelayer = layersindex;
-      
+      /*PalletY */
       remainpy = py; 
       remainpz = pz;
       packednumbox = 0;
@@ -323,17 +323,19 @@ void execiterations(void)
       }
       
       //BEGIN DO-WHILE
-      /**/
       do
       {
+        /*Set the variable that shows remaining unpacked potential second layer height in the current layer: LAYERINLAYER=0 */
         layerinlayer = 0;
+        /*Set the flag variable that shows packing of the current layer is finished or not: LAYERDONE=0;*/
         layerdone = 0;
+        
         if (packlayer())
         {
           exit(1); 
         } 
+        /*packedy已打包的Y轴值 = */
         packedy = packedy + layerthickness;
-        /**/
         remainpy = py - packedy;
         if (layerinlayer && !quit)
         {
