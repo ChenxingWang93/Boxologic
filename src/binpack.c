@@ -256,6 +256,7 @@ void inputboxlist(void)
 //***************************************************************************************
 
 /*|Name     |Description  |
+  |---------|-------------|
   |Layerdim |一个三维值 A dimension value|
   |Layereval|给对应的 Layerdim 值评估权重 |
 */
@@ -364,10 +365,10 @@ void execiterations(void)
       
       while (packing && !quit);
       // END DO-WHILE
-      /*如果迭代打包的体积 > 当前最优 &不退出迭代程序 */
+      /*如果迭代打包的体积 > 当前最优 &不退出迭代程序*/
       if ((packedvolume > bestvolume) && !quit) 
       { 
-        /**/
+        /*保留参数:(托盘朝向Pallet orientation，利用率Utilization，指针 指向在LAYERS[]阵列中 最初高度The index of the initial layer height in the LAYERS[])*/
         bestvolume = packedvolume;
         bestvariant = variant; 
         bestite = itelayer; 
@@ -379,6 +380,7 @@ void execiterations(void)
       printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
       printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
     }
+    /*如果100%打包完成，退出迭代并返回*/
     if (hundredpercent) break;
     if ((xx == yy) && (yy == zz)) variant = 6;
   }
@@ -388,8 +390,10 @@ void execiterations(void)
 // LISTS ALL POSSIBLE LAYER HEIGHTS BY GIVING A WEIGHT VALUE TO 罗列所有可能层高
 // EACH OF THEM.
 //*****************************************************************************
+/*LISTCANDITLAYERS() 函数 罗列所有可能的候选值*/
 void listcanditlayers(void)
 {
+  /**/
   char same;
   short int exdim, dimdif, dimen2, dimen3, y, z, k; 
   long int layereval;
@@ -400,6 +404,7 @@ void listcanditlayers(void)
   {
     for(y = 1; y <= 3; y++)
     { 
+      /*测试变量等于多个值的情况*/
       switch(y) 
       {
         case 1:
@@ -418,6 +423,7 @@ void listcanditlayers(void)
           dimen3 = boxlist[x].dim2;
           break;
       }
+      /**/
       if ((exdim > py) || (((dimen2 > px) || (dimen3 > pz)) && ((dimen3 > px) || (dimen2 > pz)))) continue;
       same = 0;
       
@@ -429,24 +435,31 @@ void listcanditlayers(void)
           continue;
         }
       }
+      
       if (same) continue;
       layereval = 0;
+      /*从 Z=1 到 TBN 盒子的总计数量*/
       for (z = 1; z <= tbn; z++)
       {
         if(!(x == z))
         {
+          /*查看绝对值(每个维度值与EXDIM的差值)，选择最小值& 设定变量DIMDIF来存储这个值*/
           dimdif = abs(exdim - boxlist[z].dim1);
+          
           if ( abs(exdim - boxlist[z].dim2) < dimdif )
           {
             dimdif = abs(exdim - boxlist[z].dim2);
           }
+          
           if ( abs(exdim - boxlist[z].dim3) < dimdif )
           {
             dimdif = abs(exdim - boxlist[z].dim3);
           }
+          /*累加 Set the variable DIMDIF to this value,*/
           layereval = layereval + dimdif;
         }
       }
+      
       layers[++layerlistlen].layereval = layereval;
       layers[layerlistlen].layerdim = exdim;
     }
@@ -458,8 +471,10 @@ void listcanditlayers(void)
 // REQUIRED FUNCTION FOR QSORT FUNCTION TO WORK QSORT排序函数工作的前置条件
 //**********************************************************************
 
+/*complayerlist 中 'com' means compare*/
 int complayerlist(const void *i, const void *j)
 {
+  /*回传 i &j 之间的差值*/
   return *(long int*)i - *(long int*)j;
 }
 
@@ -477,25 +492,27 @@ int packlayer(void)
     packing = 0;
     return 0;
   } 
-  
+  /*废料优先*/
   (*scrapfirst).cumx = px;
   (*scrapfirst).cumz = 0;
   
   for(;!quit;)
   {
+    /*检查当前是否有键盘键入，若有则返回一个非0值，否则返回0*/
     if (kbhit()) {
+      /*getch()从控制台读取一个字符，但不显示在屏幕上的函数 */
       if ( toupper(getch()) == 'Q' ) 
       {
         quit = 1;
         printf("\n\nWait please...\n");
       }
     } 
+    /*call FINDSMALLEST() 函数找到 Z值最小的缝隙*/
     findsmallestz();
     
     if (!(*smallestz).pre && !(*smallestz).pos)
     {
       //*** SITUATION-1: NO BOXES ON THE RIGHT AND LEFT SIDES ***
-      
       lenx = (*smallestz).cumx;
       lpz = remainpz - (*smallestz).cumz;
       findbox(lenx, layerthickness, remainpy, lpz, lpz); 
@@ -794,7 +811,7 @@ int packlayer(void)
 }
 
 //**********************************************************************
-// FINDS THE MOST PROPER LAYER HIGHT BY LOOKING AT THE UNPACKED 
+// FINDS THE MOST PROPER LAYER HIGHT BY LOOKING AT THE UNPACKED 通过检查未打包的盒子找到最合适层厚值
 // BOXES AND THE REMAINING EMPTY SPACE AVAILABLE
 //**********************************************************************
 
