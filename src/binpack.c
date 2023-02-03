@@ -298,6 +298,7 @@ void execiterations(void)
       (layers排序数组元素的指针, layerlistlen+1指向数组中元素的个数, sizeof(struct layerlist)数组中元素大小, complayerlist比较两个元素的函数)
     */
     qsort(layers, layerlistlen+1, sizeof(struct layerlist), complayerlist);
+    /*LAYERS[] 阵列第一个值作为开始*/
     for (layersindex = 1; (layersindex <= layerlistlen) && !quit; layersindex++)
     {
       /*++itenum 返回 +1后的值; itenum++ 返回原来的值*/
@@ -311,16 +312,18 @@ void execiterations(void)
       
       layerthickness = layers[layersindex].layerdim; 
       itelayer = layersindex;
+      
       remainpy = py; 
       remainpz = pz;
       packednumbox = 0;
-      
+      /*从[1]到[TBN] BOXLIST[X].PACKST=0, 设定为未打包*/
       for (x = 1; x <= tbn; x++)
       {
         boxlist[x].packst=0;
       }
       
       //BEGIN DO-WHILE
+      /**/
       do
       {
         layerinlayer = 0;
@@ -330,6 +333,7 @@ void execiterations(void)
           exit(1); 
         } 
         packedy = packedy + layerthickness;
+        /**/
         remainpy = py - packedy;
         if (layerinlayer && !quit)
         {
