@@ -173,7 +173,7 @@ void initialize(void)
     /*计算盒子总体积*/
     totalboxvol = totalboxvol + boxlist[x].vol; 
   }
-  /*malloc 动态内存分配
+  /*malloc aka memory allocation 动态内存分配
   sizeof() 内存空间的大小
   (struct scrappad) 
   */
@@ -206,10 +206,10 @@ void inputboxlist(void)
   short int n;
   char lbl[5], dim1[5], dim2[5], dim3[5], boxn[5], strxx[5], stryy[5], strzz[5];
   
-  /**/
+  /*strcpy aka string copy 字符串复制; strtemp*/
   strcpy(strtemp, filename);
   strcat(strtemp, ".txt");
-  
+  /**/
   if ( (ifp=fopen(strtemp,"r")) == NULL ) 
   {
     printf("Cannot open file %s", strtemp); 
@@ -222,18 +222,20 @@ void inputboxlist(void)
     exit(1);
   } 
   
-  /*ascii to integer 字符串转换为整型 数的 atoi() 函数*/
+  /*ascii to integer 字符串转换为整型数的 atoi() 函数*/
   xx = atoi(strxx); 
   yy = atoi(stryy);
   zz = atoi(strzz);
   
   while ( fscanf(ifp,"%s %s %s %s %s",lbl,dim1,dim2,dim3,boxn) != EOF )
   {
+    /*tbn aka total boxes number 总计盒子数*/
     boxlist[tbn].dim1 = atoi(dim1);
     boxlist[tbn].dim2 = atoi(dim2);
     boxlist[tbn].dim3 = atoi(dim3);
     
     boxlist[tbn].vol = boxlist[tbn].dim1 * boxlist[tbn].dim2 * boxlist[tbn].dim3; 
+    /*atoi aka ASCII to integer*/
     n = atoi(boxn); 
     boxlist[tbn].n = n;
     
@@ -253,12 +255,21 @@ void inputboxlist(void)
 // FOUND
 //***************************************************************************************
 
+/*|Name     |Description  |
+  |Layerdim |一个三维值 A dimension value|
+  |Layereval|给对应的 Layerdim 值评估权重 |
+*/
+
+/*EXECITERATIONS() 函数 */
 void execiterations(void) 
 {
+  /*得到托盘的不同朝向*/
   for (variant = 1; (variant <= 6) && !quit; variant++)
   {
+    /*为什么是6个变体VARIANT?*/
     switch(variant)
     { 
+      /*PX is the abbreviation of PalletX; PY is PalletY, PZ is PalletZ*/
       case 1:
         px=xx; py=yy; pz=zz;
         break;
@@ -278,11 +289,12 @@ void execiterations(void)
         px=yy; py=zz; pz=xx; 
         break;
     }
-    
+    /*通过call LISTCANDITLAYERS() 函数罗列所有可能的候选值*/
     listcanditlayers();
+    /**/
     layers[0].layereval = -1;
+    /**/
     qsort(layers, layerlistlen+1, sizeof(struct layerlist), complayerlist);
-    
     for (layersindex = 1; (layersindex <= layerlistlen) && !quit; layersindex++)
     {
       ++itenum;
@@ -292,6 +304,7 @@ void execiterations(void)
       packedvolume = 0.0;
       packedy = 0;
       packing = 1;
+      
       layerthickness = layers[layersindex].layerdim; 
       itelayer = layersindex;
       remainpy = py; 
