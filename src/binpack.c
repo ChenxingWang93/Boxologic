@@ -58,7 +58,7 @@ short int bbfx, bbfy, bbfz;
 short int xx, yy, zz;
 short int px, py, pz;
 
-short int tbn;
+short int tbn;  //tbn total boxes number
 short int x;
 short int n;
 short int layerlistlen;
@@ -263,13 +263,13 @@ void inputboxlist(void)
 /*EXECITERATIONS() 函数 */
 void execiterations(void) 
 {
-  /*得到托盘的不同朝向*/
+  /*得到托盘的不同朝向（6个）*/
   for (variant = 1; (variant <= 6) && !quit; variant++)
   {
     /*为什么是6个变体VARIANT?*/
     switch(variant)
     { 
-      /*PX is the abbreviation of PalletX; PY is PalletY, PZ is PalletZ*/
+      /*PX 是PalletX 的缩写 is the abbreviation of PalletX; PY is PalletY, PZ is PalletZ*/
       case 1:
         px=xx; py=yy; pz=zz;
         break;
@@ -291,12 +291,16 @@ void execiterations(void)
     }
     /*通过call LISTCANDITLAYERS() 函数罗列所有可能的候选值*/
     listcanditlayers();
-    /**/
+    /*Layers[x]=(Layerdim, Layereval):
+    */
     layers[0].layereval = -1;
-    /**/
+    /*qsort 排序 函数
+      (layers排序数组元素的指针, layerlistlen+1指向数组中元素的个数, sizeof(struct layerlist)数组中元素大小, complayerlist比较两个元素的函数)
+    */
     qsort(layers, layerlistlen+1, sizeof(struct layerlist), complayerlist);
     for (layersindex = 1; (layersindex <= layerlistlen) && !quit; layersindex++)
     {
+      /*++itenum 返回 +1后的值; itenum++ 返回原来的值*/
       ++itenum;
       time(&finish);
       elapsedtime = difftime(finish, start);
@@ -310,6 +314,7 @@ void execiterations(void)
       remainpy = py; 
       remainpz = pz;
       packednumbox = 0;
+      
       for (x = 1; x <= tbn; x++)
       {
         boxlist[x].packst=0;
