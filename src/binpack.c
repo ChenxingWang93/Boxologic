@@ -334,33 +334,40 @@ void execiterations(void)
         {
           exit(1); 
         } 
-        /*packedy已打包的Y轴值 = */
+        /*已打包的Y轴值packedy = 已打包的Y轴值packedy + 层厚值layerthickness*/
         packedy = packedy + layerthickness;
+        /*托盘的Y轴方向剩余的值remainpy = 托盘的Y轴值 - 已打包的Y轴值packedy*/
         remainpy = py - packedy;
         if (layerinlayer && !quit)
         {
+          
           prepackedy = packedy; 
           preremainpy = remainpy; 
+          
           remainpy = layerthickness - prelayer; 
           packedy = packedy - layerthickness + prelayer;
+          
           remainpz = lilz;
           layerthickness = layerinlayer;
           layerdone = 0;
           if (packlayer())
           {
-            exit( 1);
+            exit(1);
           } 
           packedy = prepackedy; 
           remainpy = preremainpy;
           remainpz = pz;
         } 
+        /*call FINDLAYER(REMAINPY)函数 决定最合适的层高 适配到托盘剩余未打包的高度*/
         findlayer(remainpy);
       }
+      
       while (packing && !quit);
       // END DO-WHILE
-      
+      /*如果迭代打包的体积 > 当前最优 &不退出迭代程序 */
       if ((packedvolume > bestvolume) && !quit) 
       { 
+        /**/
         bestvolume = packedvolume;
         bestvariant = variant; 
         bestite = itelayer; 
@@ -377,10 +384,10 @@ void execiterations(void)
   }
 }
 
-//**********************************************************************
-// LISTS ALL POSSIBLE LAYER HEIGHTS BY GIVING A WEIGHT VALUE TO 
+//*****************************************************************************
+// LISTS ALL POSSIBLE LAYER HEIGHTS BY GIVING A WEIGHT VALUE TO 罗列所有可能层高
 // EACH OF THEM.
-//**********************************************************************
+//*****************************************************************************
 void listcanditlayers(void)
 {
   char same;
@@ -447,8 +454,8 @@ void listcanditlayers(void)
   return;
 }
 
-//**********************************************************************
-// REQUIRED FUNCTION FOR QSORT FUNCTION TO WORK QSORT函数工作的前置条件
+//*********************************************************************
+// REQUIRED FUNCTION FOR QSORT FUNCTION TO WORK QSORT排序函数工作的前置条件
 //**********************************************************************
 
 int complayerlist(const void *i, const void *j)
