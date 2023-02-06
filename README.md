@@ -101,28 +101,40 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > MAIN
 > /*初始化变量*/
 > FUNCTION INITIALIZE();
+> 
 > /*从输入文件中读取数据 的函数*/
 > FUNCTION INPUTBOXLIST();
+> 
 > /*创建 候选Layers[]阵列 的函数*/
 > FUNCTION LISTCANDITLAYERS();
+> 
 > /*计算层列表 的函数*/
 > FUNCTION COMPLAYERLIST();
+> 
 > /*PACKLAYER层厚 的函数*/
 > FUNCTION PACKLAYER();
+> 
 > /*通过检查未打包的盒子找到最合适的层厚值 的函数*/
 > FUNCTION FINDLAYER();
+> 
 > /*找到最好fit当前间隙的盒子 的函数*/
 > FUNCTION FINDBOX();
+> 
 > /*分析盒子三维 ANALYZEBOX 的函数*/
 > FUNCTION ANALYZEBOX(HMX,HY,HMY,HZ,HMZ,DIM1,DIM2,DIM3);
+> 
 > /*用smallest z 值来决定当前层的 盒子间隙 的函数*/
 > FUNCTION FINDSMALLEST();
+> 
 > /*决定pack 哪一个盒子 的函数*/
 > FUNCTION CHECKFOUND();
+> 
 > /*检查盒子体积 的函数*/
 > FUNCTION VOLUMECHECK();
+> 
 > /**/
 > OUTPUTBOXLIST();
+> 
 > /*Writes 打包信息到文件 的函数*/
 > FUNCTION REPORT();
 > ```
@@ -131,15 +143,20 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 /*MAIN 函数*/
 > ``` C
 > MAIN
+> 
 > /*通过call INITIALIZE() 函数 执行初始化*/
 > Perform initialization by calling INITIALIZE();
+> 
 > /**/
 > Get time(START);
+> 
 > /*通过call EXECITERATIONS() 执行迭代 &找到最优解的参数*/
 > Execute iterations and find the parameters of the best solution by calling 
 >   EXECITERATIONS();
+>   
 > /**/
 > Get time(FINISH);
+> 
 > /*使用找到的参数，打包找到的最优解，报告控制器*/
 > Using the parameters found, pack the best solution found, report to the console
 >   and to an output text file by calling REPORT();
