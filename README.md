@@ -224,42 +224,23 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > /*call 合适的函数来执行迭代*/
 > FUNCTION EXECITERATIONS();
 > For VARIANT=1 to 6{
-> 
->   /*VARIANT的每个值 得到托盘的不同朝向 啊！PX is the abbreviation of PalletX, PY,PZ同理*/
 >   For each value of VARIANT get a different orientation of the pallet to the variable PX,PY,PZ;
->   
->   /*通过call LISTCANDITLAYERS() 罗列所有可能的候选值;*/
 >   List all possible candidate values by calling LISTCANDITLAYERS();
->   
->   /*通过使用 QSORT 以递增顺序相对于 LAYEREVAL 的域 分类 阵列 LAYERS*/
 >   Sort the array LAYERS in respect to its LAYEREVAL fields in increasing order by using QSORT;
->   
->   /*LAYERS[] 阵列中的每一个 层值，执行另一个迭代开始于 层值 作为开始层 的厚度*/
 >   For each layer values in the LAYERS[] array, perform another iteration staring with that layer value as the starting layer thickness:
 >   
->   /*LAYERLIST 变量为0，指针LAYERSINDEX为1，LAYERS[]阵列中的第一个值为开始*/
 >   For LAYERSINDEX=1 to LAYERLISTLEN{
->     
->     /*LAYERS[] 阵列第一个值作为开始*/
 >     Get the first value of the LAYERS[] array as the starting
->       
->       /*层厚 值*/
 >       LAYERTHICKNESS value:
->       
->       /*层厚 值 = 层[层索引].层三维*/
 >       LAYERTHICKNESS=LAYERS[LAYERSINDEX].LAYERDIM
->     
->     /*把所有盒子打包状态 设定为 0*/
 >     Set all boxes' packed status to 0: 
->       
->         /*从[1]到[TBN] BOXLIST[X].PACKST=0,设定为未打包*/
->         For X=1 to TBN do BOXLIST[X].PACKST=0;
+>       For X=1 to TBN do BOXLIST[X].PACKST=0;
 >     do{
->         /*设定 展示剩余未打包的 可能的第二层高度 到当前的层 的变量 LAYERINLAYER*/
 >         Set the variable that shows remaining unpacked potential second layer height in the current layer: LAYERINLAYER=0;
->         
->         /*设定🚩变量 展示 当前层的打包是否完成 LAYERDONE=0;*/
 >         Set the flag variable that shows packing of the current layer is finished or not: LAYERDONE=0;
+>         Call PACKLAYER(), to pack the layer, and if a memory error is responded, exit the program;
+>         If there is a height available for packing in the current layer, perform another layer packing in the current layer:
+>         /*2月6日写到这里*/
 >       }
 > }
 > ```
