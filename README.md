@@ -126,7 +126,6 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > /*Writes 打包信息到文件 的函数*/
 > FUNCTION REPORT();
 > ```
-
 #
 
 /*MAIN 函数*/
@@ -147,14 +146,13 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > Wait until a keystroke entered by the user;
 > End;
 > ```
-
 #
 
 /*INITIALIZE() 初始化 函数*/
 > ``` C
 > FUNCTION INITIALIZE()
 > Get the input FILENAME from the user; //抓取文件名
-> 
+> /*call 函数INPUTBOXLIS() 得到来自用户输入文件的 pallet &box 集数据*/
 > Get the pallet and box set data entered by the user from the input file by calling the function INPUTBOXLIS();
 > calling the function INPUTBOXLIST();  
 > Calculate the volume of the pallet;   //计算托盘体积
@@ -163,9 +161,91 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > SCRABFIRST.PRE=NULL;SCRABFIRST.POS=NULL;    //废料优先.PRE; 废料优先.POS
 > Initialize variables those keep the best so far and its parameters.   //初始化目前保持最好的变量 &参数
 > ```
-
 #
+
 /*INPUTBOXLIST() 从输入文件中读取盒列表数据 函数*/
+> ``` C
+> /*INPUTBOXLIST() 函数*/
+> ```
+#
+
+/*EXECITERATIONS() 执行迭代 函数*/
+> ``` C
+> 
+> ```
+#
+
+/*LISTCANDITLAYERS() 罗列所有可能的候选值 函数*/
+> ``` C
+> 
+> ``` 
+#
+
+/*COMPLAYERLIST() 对比列表 函数 com means compare*/
+> ``` C
+> FUNCTION COMPLAYERLIST(i,j);
+> /*COMPLAYERLIST(i,j) 函数要求编译器内建函数QSORT()*/
+> This function is required for the compiler built in function QSORT().
+> /*回传 i &j之间的差值*/
+> It returns the difference between the values i & j.
+> ```
+#
+
+/*PACKLAYER()打包层 函数*/
+> ``` C
+> 
+> ```
+#
+
+/*FINDLAYER() 通过检查未打包的盒子找到最合适的层厚值 函数*/
+> ``` C
+> 
+> ```
+#
+
+/*FINDBOX() 找到最好fit当前缝隙的盒子 函数*/
+> ``` C
+> 
+> ```
+#
+
+/*ANALYZEBOX(HMX, HY, HMY, HZ, HMZ, DIM1, DIM2, DIM3) 函数*/
+> ``` C
+> 
+> ```
+#
+
+/*FINDSMALLESTZ() 用smallest z 值决定当前层 盒子间隙 函数*/
+> ``` C
+> 
+> ```
+#
+
+/*CHECKFOUND() 决定pack 哪个盒子 函数*/
+> ``` C
+> 
+> ```
+#
+
+/*VOLUMECHECK() 检查打包情况 函数*/
+> ``` C
+> 
+> ```
+#
+
+/*GRAPHUNPACKEDOUT() 检查打包情况 函数*/
+> ``` C
+> 
+> ```
+#
+
+/*OUTPUTBOXLIST() 写入打包信息到文件 函数*/
+> ``` C
+> 
+> ```
+#
+
+/*REPORT() 函数*/
 > ``` C
 > 
 > ```
@@ -181,21 +261,6 @@ Layers[5]=(40, 80)
 Layers[6]=(52, 80)
 Layers[7]=(36, 72)
 ```
-#
-
-#
-
-#
-
-#
-
-#
-
-#
-
-#
-
-#
 
 # Future Plans
 This project uses a fairly old codebase as a launching-off point. The plan is to modernize it a bit, and then add functionality by allowing the user to specify more than one container to be packed, as well as perhaps libraryifying the main code so that you can wrap your own code around it more easily. Keep watching this space for details as they emerge.
