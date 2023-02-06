@@ -238,7 +238,30 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >   For each layer values in the LAYERS[] array, perform another iteration staring with that layer value as the starting layer thickness:
 >   
 >   /*LAYERLIST 变量为0，指针LAYERSINDEX为1，LAYERS[]阵列中的第一个值为开始*/
->   
+>   For LAYERSINDEX=1 to LAYERLISTLEN{
+>     
+>     /*LAYERS[] 阵列第一个值作为开始*/
+>     Get the first value of the LAYERS[] array as the starting
+>       
+>       /*层厚 值*/
+>       LAYERTHICKNESS value:
+>       
+>       /*层厚 值 = 层[层索引].层三维*/
+>       LAYERTHICKNESS=LAYERS[LAYERSINDEX].LAYERDIM
+>     
+>     /*把所有盒子打包状态 设定为 0*/
+>     Set all boxes' packed status to 0: 
+>       
+>         /*从[1]到[TBN] BOXLIST[X].PACKST=0,设定为未打包*/
+>         For X=1 to TBN do BOXLIST[X].PACKST=0;
+>     do{
+>         /*设定 展示剩余未打包的 可能的第二层高度 到当前的层 的变量 LAYERINLAYER*/
+>         Set the variable that shows remaining unpacked potential second layer height in the current layer: LAYERINLAYER=0;
+>         
+>         /*设定🚩变量 展示 当前层的打包是否完成 LAYERDONE=0;*/
+>         Set the flag variable that shows packing of the current layer is finished or not: LAYERDONE=0;
+>       }
+> }
 > ```
 #
 
