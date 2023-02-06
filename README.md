@@ -195,6 +195,26 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 /*INPUTBOXLIST() 从输入文件中读取盒列表数据 函数*/
 > ``` C
 > /*INPUTBOXLIST() 函数*/
+> FUCTION INPUTBOXLIST()
+> 
+> /*如果存在，打开文件*/
+> If exists, open the file FILENAME;
+> 
+> /*否则，告诉用户“无法打开 文件 XXX”*/
+>   Else{Tell the user "Cannot open the file FILENAME";end;}
+>   
+> /*读取输入文件的第一行 &设定托盘的三维变量 XX, YY, ZZ;*/
+> Read the first line of the input file and set the pallet dimension variables XX, YY, ZZ;
+> 
+> /*读取输入文件中的每个其他行 &对应到阵列BOXLIST[]中的每个域。*/
+> Read every other lines in the input file and fill each field in the array BOXLIST[].
+> 
+> /*变量TBN 已设定到 输入文件中 盒子的总数量啊！！TBN是the abbreviation of Total Box Number, 即TBN*/
+> Now the variable TBN is already set to the total number of boxes input from the file;
+> 
+> /*关闭文件 FILENAME*/
+> Close the file FILENAME;
+> RETURN;
 > ```
 #
 
