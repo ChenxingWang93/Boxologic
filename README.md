@@ -168,15 +168,27 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 /*INITIALIZE() 初始化 函数*/
 > ``` C
 > FUNCTION INITIALIZE()
-> Get the input FILENAME from the user; //抓取文件名
+> /*抓取文件名*/
+> Get the input FILENAME from the user; 
+> 
 > /*call 函数INPUTBOXLIS() 得到来自用户输入文件的 pallet &box 集数据*/
 > Get the pallet and box set data entered by the user from the input file by calling the function INPUTBOXLIS();
 > calling the function INPUTBOXLIST();  
-> Calculate the volume of the pallet;   //计算托盘体积
-> Calculate the total volume of all boxes;  //计算盒子总体积
-> Create a node and call it SCRABFIRST. Each of these double linked list nodes keeps X and Z coordinates of each gap in the layer currently being packed.   //创建一个节点& call 它废料优先。每一个双向链接列表 节点保持 每个当前正在打包的层 的缝隙的 X & Z坐标
-> SCRABFIRST.PRE=NULL;SCRABFIRST.POS=NULL;    //废料优先.PRE; 废料优先.POS
-> Initialize variables those keep the best so far and its parameters.   //初始化目前保持最好的变量 &参数
+> 
+> /*计算托盘体积*/
+> Calculate the volume of the pallet; 
+> 
+> /*计算盒子总体积*/
+> Calculate the total volume of all boxes;
+> 
+> /*创建一个节点& call 它废料优先。每一个双向链接列表 节点保持 每个当前正在打包的层 的缝隙的 X & Z坐标*/
+> Create a node and call it SCRABFIRST. Each of these double linked list nodes keeps X and Z coordinates of each gap in the layer currently being packed.
+> 
+> /*废料优先.PRE; 废料优先.POS*/
+> SCRABFIRST.PRE=NULL;SCRABFIRST.POS=NULL;
+> 
+> /*初始化目前保持最好的变量 &参数*/
+> Initialize variables those keep the best so far and its parameters.
 > ```
 #
 
