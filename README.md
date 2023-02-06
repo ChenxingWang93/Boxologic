@@ -221,6 +221,24 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 /*EXECITERATIONS() 执行迭代 函数*/
 > ``` C
 > 
+> /*call 合适的函数来执行迭代*/
+> FUNCTION EXECITERATIONS();
+> For VARIANT=1 to 6{
+> 
+>   /*VARIANT的每个值 得到托盘的不同朝向 啊！PX is the abbreviation of PalletX, PY,PZ同理*/
+>   For each value of VARIANT get a different orientation of the pallet to the variable PX,PY,PZ;
+>   
+>   /*通过call LISTCANDITLAYERS() 罗列所有可能的候选值;*/
+>   List all possible candidate values by calling LISTCANDITLAYERS();
+>   
+>   /*通过使用 QSORT 以递增顺序相对于 LAYEREVAL 的域 分类 阵列 LAYERS*/
+>   Sort the array LAYERS in respect to its LAYEREVAL fields in increasing order by using QSORT;
+>   
+>   /*LAYERS[] 阵列中的每一个 层值，执行另一个迭代开始于 层值 作为开始层 的厚度*/
+>   For each layer values in the LAYERS[] array, perform another iteration staring with that layer value as the starting layer thickness:
+>   
+>   /*LAYERLIST 变量为0，指针LAYERSINDEX为1，LAYERS[]阵列中的第一个值为开始*/
+>   
 > ```
 #
 
