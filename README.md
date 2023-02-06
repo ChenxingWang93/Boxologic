@@ -158,8 +158,17 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > Get the pallet and box set data entered by the user from the input file by calling the function INPUTBOXLIS();
 > calling the function INPUTBOXLIST();  
 > Calculate the volume of the pallet;   //计算托盘体积
+> Calculate the total volume of all boxes;  //计算盒子总体积
+> Create a node and call it SCRABFIRST. Each of these double linked list nodes keeps X and Z coordinates of each gap in the layer currently being packed.   //创建一个节点& call 它废料优先。每一个双向链接列表 节点保持 每个当前正在打包的层 的缝隙的 X & Z坐标
+> SCRABFIRST.PRE=NULL;SCRABFIRST.POS=NULL;    //废料优先.PRE; 废料优先.POS
+> Initialize variables those keep the best so far and its parameters.   //初始化目前保持最好的变量 &参数
 > ```
 
+#
+/*INPUTBOXLIST() 从输入文件中读取盒列表数据 函数*/
+> ``` C
+> 
+> ```
 #
 
 ``` C
