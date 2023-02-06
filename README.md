@@ -213,8 +213,10 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 /*COMPLAYERLIST() 对比列表 函数 com means compare*/
 > ``` C
 > FUNCTION COMPLAYERLIST(i,j);
+> 
 > /*COMPLAYERLIST(i,j) 函数要求编译器内建函数QSORT()*/
 > This function is required for the compiler built in function QSORT().
+> 
 > /*回传 i &j之间的差值*/
 > It returns the difference between the values i & j.
 > ```
