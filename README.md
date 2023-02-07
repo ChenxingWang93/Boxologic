@@ -436,7 +436,6 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >       
 >     /*情况-3*/
 >     SITUATION-3:
->     
 >     /*如果缝隙的右侧 没有盒子*/
 >     If there is no box on the right side of the gap do {
 >         /*计算缝隙的 x & z 维值*/
@@ -457,9 +456,30 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >         /*缝隙的z 方向长度：LENX*/
 >         the Z dimension of the gap: LENZ,
 >         
+>         /*距离缝隙的最大可用z 轴值：LPZ*/
+>         maximum available Z dimension to the gap: LPZ;
 >         
+>         /*call FINDBOX(LENX, LAYERTHICKNESS, REMAINPY, LENZ, LPZ) 函数 找到盒子*/
+>         call FINDBOX(LENX, LAYERTHICKNESS, REMAINPY, LENZ, LPZ);
 >         
+>         /*通过call CHECKFOUND() 函数 检查由FINDBOX() 函数 找到的盒子*/
+>         Check on the boxes found by the FINDBOX() function by calling CHECKFOUND();
+>         
+>         /*如果打包层结束，退出循环*/
+>         If the packing of the layer is finished, exit the loop;
+>         
+>         /*适当地设定所有必要的变量和指针 代表当前正在打包 层的边缘拓扑结构;*/
+>         Set all the necessary variables and pointers properly to represent the current topology of the edge of the layer that is currently being packed;
+>         
+>         /*如果层的边缘是被拉平的，则到下一个循环的 第一行*/
+>         If the edge of the layer is evened, go to first line of the next loop;
+>         
+>         /*通过call VOLUMECHECK() 检查打包情况*/
+>         To check the hundred percent packing condition, call VOLUMECHECK()
 >     }
+>        
+>     /*情况-4*/
+>     SITUATION-4: IF THERE ARE BOXES ON BOTH SIDES OF THE GAP
 > }
 >     
 > ```
