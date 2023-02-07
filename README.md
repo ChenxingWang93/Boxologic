@@ -573,7 +573,39 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 
 /*FINDBOX() 找到最好fit当前缝隙的盒子 函数*/
 > ``` C
-> 
+> /*参数：HMX:缝隙的x方向最大值；HY:缝隙的y方向值；HMY:缝隙的y方向最大值；HZ:缝隙的z方向值；HMZ:缝隙的z方向最大值*/
+> FUNCTION FINDBOX(HMX: Maximum X dimension of the gap;
+>     HY: Y dimension of the gap;HMY: Maximum Y dimension of the gap;
+>     HZ: Z dimension of the gap;HMZ: Maximum Z dimension of the gap);
+>     
+> /*对于能fit in 当前层厚的盒类型*/
+> For the box type fitting in the current layerthickness:
+>     BFX=;BFY=;BFZ=;
+>     
+> /*对于不能fit in 当前层厚的盒类型*/
+> For the box type that cannot fit in the current layerthickness, but the closest one:
+>     BFX=;BFY=;BFZ=;
+>     
+> /*只检验不同的盒子*/
+> For Y=1 to TBN with step BOXLIST[Y].N do {(Examines only different boxes)
+>     /*如果盒子被检验到 被打包，继续下一个循环*/
+>     If the box that is being examined has been packed before, continue with the next loop;
+>     
+>     /*某类箱子中未装箱的箱子索引*/
+>     X=The index of the box that has not been packed before among a certain type of box;
+>     
+>     /*分析所有6种被检验盒子可能的朝向*/
+>     Analyze all six possible orientations of the box being examined:
+>     
+>     /*HMX,HY,HMY,HZ,HMZ,DIM1,DIM2,DIM3 HMX:缝隙的x方向最大值; HY:缝隙的y方向值; HMY:缝隙的y方向最大值; HZ:缝隙的z方向值; HMZ:缝隙的z方向最大值; */
+>     ANALYZEBOX(HMX, HY, HMY, HZ, HMZ, BOXLIST[X].DIM1,BOXLIST[X].DIM2,BOXLIST[X].DIM3);
+>     ANALYZEBOX(HMX, HY, HMY, HZ, HMZ, BOXLIST[X].DIM1,BOXLIST[X].DIM3,BOXLIST[X].DIM2);
+>     ANALYZEBOX(HMX, HY, HMY, HZ, HMZ, BOXLIST[X].DIM2,BOXLIST[X].DIM1,BOXLIST[X].DIM3);
+>     ANALYZEBOX(HMX, HY, HMY, HZ, HMZ, BOXLIST[X].DIM2,BOXLIST[X].DIM3,BOXLIST[X].DIM1);
+>     ANALYZEBOX(HMX, HY, HMY, HZ, HMZ, BOXLIST[X].DIM3,BOXLIST[X].DIM1,BOXLIST[X].DIM2);
+>     ANALYZEBOX(HMX, HY, HMY, HZ, HMZ, BOXLIST[X].DIM3,BOXLIST[X].DIM2,BOXLIST[X].DIM1);
+> }
+> RETURN;
 > ```
 #
 
