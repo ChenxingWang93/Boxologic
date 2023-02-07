@@ -522,6 +522,41 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >     If the Z dimension of the gap is different on both sides {
 >         /*计算缝隙的 x & z 维值*/
 >         Calculate the gap's X and Z dimensions;
+>         
+>         /*通过查看以下参数为缝隙找到最合适的盒子*/
+>         To find the most suitable boxes to the gap found, by looking at;
+>             /*缝隙的x 的方向长度：LENX*/
+>             the X-dimension of the gap: LENX,
+>
+>             /*缝隙的层厚：LAYERTHICKNESS*/
+>             layerthickness of the gap: LAYERTHICKNESS,
+>             
+>             /*距离缝隙的最大可用厚度：REMAINPY*/
+>             maximum available thickness to the gap: REMAINPY,
+>             
+>             /*缝隙的z 方向长度：LENX*/
+>             the Z dimension of the gap: LENZ,
+>             
+>             /*call FINDBOX(LENX, LAYERTHICKNESS, REMAINPY, LENZ, LPZ) 的函数 找到盒子*/
+>             call FINDBOX(LENX, LAYERTHICKNESS, REMAINPY, LENZ, LPZ);
+>             
+>             /*通过call CHECKFOUND() 函数 检查由FINDBOX() 函数 找到的盒子*/
+>             Check on the boxes found by the FINDBOX() function by calling CHECKFOUND();
+>             
+>             /*如果层的打包任务结束，则退出循环*/
+>             If the packing of the layer is finished, exit the loop;
+>             
+>             /*如果层的边缘是被拉平的，则到下一个循环的 第一行*/
+>             If the edge of the layer is evened,go to the first line of the next loop;
+>             
+>             /*适当地设定所有必要的变量和指针 代表当前正在打包 层的边缘拓扑结构;*/
+>             Set all the necessary variables and pointers properly to represent the current topology of the edge of the layer that is currently being packed; 
+>             
+>             /*更新拓扑的边缘信息，如果另一个缝隙被添加到拓扑，则添加一个节点来保留这个缝隙，适当地更新其他*/
+>             While updating the edge of topology information, if another gap is added to the topology, add a new node to keep this gap, and update the others properly;
+>             
+>             /*通过call VOLUMECHECK() 检查打包情况*/
+>             To check the hundred percent packing condition, call VOLUMECHECK()
 >     }
 > }
 >     
