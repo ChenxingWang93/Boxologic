@@ -516,8 +516,13 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >             Check on the boxes found by the FINDBOX() function by calling CHECKFOUND(); 
 >     }
 >     
->     
->     
+>       
+>     /*分 情况-4B*/
+>     /*如果 缝隙的z轴方向 与两侧 不同*/
+>     If the Z dimension of the gap is different on both sides {
+>         /*计算缝隙的 x & z 维值*/
+>         Calculate the gap's X and Z dimensions;
+>     }
 > }
 >     
 > ```
