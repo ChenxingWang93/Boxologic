@@ -433,12 +433,33 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >             /*通过call VOLUMECHECK() 检查打包情况*/
 >             To check the hundred percent packing condition, call VOLUMECHECK()
 >     }
->
+>       
 >     /*情况-3*/
 >     SITUATION-3:
 >     
 >     /*如果缝隙的右侧 没有盒子*/
->     If there is no box on the right side of the gap do 
+>     If there is no box on the right side of the gap do {
+>         /*计算缝隙的 x & z 维值*/
+>         Calculate the gap's X & Z dimensions;
+>
+>         /*通过查看以下参数为缝隙找到最合适的盒子*/
+>         To find the most suitable boxes to the gap found, by looking at;
+>         
+>         /*缝隙的x 的方向长度：LENX*/
+>         the X-dimension of the gap: LENX,
+>         
+>         /*缝隙的层厚：LAYERTHICKNESS*/
+>         layerthickness of the gap: LAYERTHICKNESS,
+>         
+>         /*距离缝隙的最大可用厚度：REMAINPY*/
+>         maximum available thickness to the gap: REMAINPY,
+>         
+>         /*缝隙的z 方向长度：LENX*/
+>         the Z dimension of the gap: LENZ,
+>         
+>         
+>         
+>     }
 > }
 >     
 > ```
