@@ -289,10 +289,30 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >       Set the evaluation value of the EXDIM to 0 by doing LAYEREVAL=0;
 >       
 >       /*从 Z=1 到 TBN 盒子的总计数量*/
->       
->   }
+>       For Z=1 to TBN do {
+>           /*取得每个盒子最近的维度值到EXDIM*/ 
+>           Get the closest dimension value of each box to the EXDIM
+>           
+>               /*查看绝对值（每个维度值与EXDIM的差值），选择最小的值& 设定变量DIMDIF来存储这个值*/
+>               by looking at the absolute values of differences between each dimension and EXDIM, and selecting the smallest value;
+>               and set the variable DIMDIF to this value;
+>               
+>           /*累加这些值*/
+>           Add those values cumulatively by doing:
+>               /**/
+>               LAYEREVAL=LAYEREVAL+DIMDIF;
+>       }
+>       /*LAYERLIST阵列长度 + 1；*/
+>       LAYERLISTLEN=LAYERLISTLEN+1;
+>   
+>       /*层[层列表长度].层评估值=LAYEREVAL；*/
+>       LAYERS[LAYERLISTLEN].LAYEREVAL=LAYEREVAL;
+>   
+>       /*层[层列表长度].层维度=EXDIM；*/
+>       LAYERS[LAYERLISTLEN].LAYERDIM=EXDIM;  
+>     }
 > }
-> 
+> RETURN;
 > ``` 
 #
 
@@ -312,7 +332,11 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 
 /*PACKLAYER()打包层 函数*/
 > ``` C
+> /**/
+> If LAYERTHICKNESS=0 do {PACKING=0;RETURN;};
 > 
+> /*初始化 第一个& 唯一一个到层's X &Z 值的节点 */
+> Initialize the first &only node to the layer's X and Z values:
 > ```
 #
 
