@@ -346,6 +346,7 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >     /**/
 >     To find the gap with the least Z value in the layer call FINDSMALLESTZ();
 >     
+>     
 >     /*情况-1*/
 >     SITUATION-1:
 >     /*如果缝隙 的两侧都没有盒子 则do*/
@@ -385,6 +386,7 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >             To check the hundred percent packing condition,
 >             call VOLUMECHECK();
 >     }
+>     
 >     
 >     /*情况-2*/
 >     SITUATION-2:
@@ -433,6 +435,7 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >             /*通过call VOLUMECHECK() 检查打包情况*/
 >             To check the hundred percent packing condition, call VOLUMECHECK()
 >     }
+>     
 >       
 >     /*情况-3*/
 >     SITUATION-3:
@@ -477,9 +480,44 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >         /*通过call VOLUMECHECK() 检查打包情况*/
 >         To check the hundred percent packing condition, call VOLUMECHECK()
 >     }
->        
+>     
+>       
 >     /*情况-4*/
+>     /*缝隙两侧都有盒子*/
 >     SITUATION-4: IF THERE ARE BOXES ON BOTH SIDES OF THE GAP
+>     /*分 情况-4A*/
+>     SUBSITUATION-4A
+>     /*如果 缝隙的z轴方向 与两侧 相同*/
+>     If the Z dimensions of the gap is the same on both sides {
+>         /*计算缝隙的 x & z 方向值*/
+>         Calculate the gap's X & Z dimensions;
+>         
+>         /*通过查看以下参数为缝隙找到最合适的盒子*/
+>         To find the most suitable boxes to the gap found, by looking at;
+>             /*缝隙的x 的方向长度：LENX*/
+>             the X-dimension of the gap: LENX,
+>
+>             /*缝隙的层厚：LAYERTHICKNESS*/
+>             layerthickness of the gap: LAYERTHICKNESS,
+>             
+>             /*距离缝隙的最大可用厚度：REMAINPY*/
+>             maximum available thickness to the gap: REMAINPY,
+>             
+>             /*缝隙的z 方向长度：LENX*/
+>             the Z dimension of the gap: LENZ,
+>             
+>             /*距离缝隙的最大可用z 轴值：LPZ*/
+>             maximum available Z dimension to the gap: LPZ; 
+>             
+>             /*call FINDBOX(LENX, LAYERTHICKNESS, REMAINPY, LENZ, LPZ) 的函数 找到盒子*/
+>             call FINDBOX(LENX, LAYERTHICKNESS, REMAINPY, LENZ, LPZ);
+>             
+>             /*通过call CHECKFOUND() 函数 检查由FINDBOX() 函数 找到的盒子*/
+>             Check on the boxes found by the FINDBOX() function by calling CHECKFOUND(); 
+>     }
+>     
+>     
+>     
 > }
 >     
 > ```
