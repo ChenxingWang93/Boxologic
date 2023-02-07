@@ -655,6 +655,24 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 
 /*FINDSMALLESTZ() 用smallest z 值决定当前层 盒子间隙 函数*/
 > ``` C
+> /*用smallest z 值来决定当前层的 盒子间隙*/
+> FUNCTION FINDSMALLESTZ();
+> 
+> /*取得链接列表的第一个节点 代表当前层的边缘拓扑*/
+> Get the first node of the linked list representing the edge topology of the current layer:
+>     /*把废料优先值赋给 废料编号*/
+>     SCRAPMEMB=SCRAPFIRST;
+> /*把值赋给会以smallest z-value 保留节点 的变量*/
+> Assign it to the variable which will keep the node with a smallest z-value:
+> 
+>     /*把废料编号值赋给 最小z值*/
+>     SMALLESTZ=SCRAPMEMB;
+> /*当 废料编号.位置≠NULL*/
+> While SCRAPMEMB.POS≠NULL do{
+>     If(SCRAPMEMB.POS).CUMZ<SMALLESTZ.CUMZ then
+>         SMALLESTZ=SCRAPMEMB.POS;
+> }
+> RETURN;
 > ```
 #
 
