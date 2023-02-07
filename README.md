@@ -140,6 +140,7 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > ```
 #
 
+
 /*MAIN 函数*/
 > ``` C
 > MAIN
@@ -164,6 +165,7 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > End;
 > ```
 #
+
 
 /*INITIALIZE() 初始化 函数*/
 > ``` C
@@ -192,6 +194,7 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > ```
 #
 
+
 /*INPUTBOXLIST() 从输入文件中读取盒列表数据 函数*/
 > ``` C
 > /*INPUTBOXLIST() 函数*/
@@ -218,39 +221,81 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > ```
 #
 
+
 /*EXECITERATIONS() 执行迭代 函数*/
 > ``` C
-> 
 > /*call 合适的函数来执行迭代*/
 > FUNCTION EXECITERATIONS();
-> For VARIANT=1 to 6{
+> 
+> /*为什么 会是 6个变体VARIANT ???*/
+> For VARIANT=1 to 6 {
+>   /*VARIANT的每个值 得到托盘的不同朝向 啊！PX is the abbreviation of PalletX, PY,PZ同理*/
 >   For each value of VARIANT get a different orientation of the pallet to the variable PX,PY,PZ;
+>   
+>   /*通过call LISTCANDITLAYERS() 罗列所有可能的候选值;*/
 >   List all possible candidate values by calling LISTCANDITLAYERS();
+>   
+>   /*通过使用 QSORT 以递增顺序相对于 LAYEREVAL 的域 分类 阵列 LAYERS*/
 >   Sort the array LAYERS in respect to its LAYEREVAL fields in increasing order by using QSORT;
+>   
+>   /*LAYERS[] 阵列中的每一个 层值，执行另一个迭代开始于 层值 作为开始层 的厚度*/
 >   For each layer values in the LAYERS[] array, perform another iteration staring with that layer value as the starting layer thickness:
 >   
+>   /*LAYERLIST 变量为0，指针LAYERSINDEX为1，LAYERS[]阵列中的第一个值为开始*/
 >   For LAYERSINDEX=1 to LAYERLISTLEN{
->     Get the first value of the LAYERS[] array as the starting
->       LAYERTHICKNESS value:
->       LAYERTHICKNESS=LAYERS[LAYERSINDEX].LAYERDIM
->     Set all boxes' packed status to 0: 
->       For X=1 to TBN do BOXLIST[X].PACKST=0;
->     do{
->         Set the variable that shows remaining unpacked potential second layer height in the current layer: LAYERINLAYER=0;
->         Set the flag variable that shows packing of the current layer is finished or not: LAYERDONE=0;
->         Call PACKLAYER(), to pack the layer, and if a memory error is responded, exit the program;
->         If there is a height available for packing in the current layer, perform another layer packing in the current layer:
->         /*2月6日写到这里*/
->       }
+>       
+>   }
 > }
 > ```
 #
 
+
 /*LISTCANDITLAYERS() 罗列所有可能的候选值 函数*/
 > ``` C
+> FUNCTION LISTCANDITLAYERS();
+> 
+> /*变量 LAYERLISTLEN 里没有对象*/
+> LAYERLISTLEN=0;
+> 
+> /**/
+> For X=1 to TBN {
+> 
+>   /*得到每个盒子的三维，一次一个*/
+>   Get each dimension of each box, one at a time by doing:
+>   For Y=1 to 3 {
+>       If Y=1 do {
+>           EXDIM=BOXLIST[X].DIM1;
+>           DIMEN2=BOXLIST[X].DIM2;
+>           DIMEN3=BOXLIST[X].DIM3;
+>       }
+>       If Y=2 do {
+>           EXDIM=BOXLIST[X].DIM2;
+>           EXDIM2=BOXLIST[X].DIM1;
+>           EXDIM3=BOXLIST[X].DIM3;
+>       }
+>       If Y=3 do {
+>           EXDIM=BOXLIST[X].DIM3;
+>           EXDIM2=BOXLIST[X].DIM1;
+>           EXDIM3=BOXLIST[X].DIM2;
+>       }
+>       
+>       /*如果被检查盒子的任意维度不能 fit 托盘的对应 维度，退出循环& 继续下一个循环*/
+>       If any of the dimensions of the box being examined cannot fit into the pallet's respective dimensions, exit this loop and continue with the next loop;
+>       
+>       /*如果EXDIM与之前检验 三维 长度相同，退出循环 &继续下一个循环*/
+>       If EXDIM is the same as any of previously examined dimension lengths, exit this loop and continue with the next loop;
+>       
+>       /*设定EXDIM 的评估值evaluation value 为 0*/
+>       Set the evaluation value of the EXDIM to 0 by doing LAYEREVAL=0;
+>       
+>       /*从 Z=1 到 TBN 盒子的总计数量*/
+>       
+>   }
+> }
 > 
 > ``` 
 #
+
 
 /*COMPLAYERLIST() 对比列表 函数 com means compare*/
 > ``` C
@@ -264,11 +309,13 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > ```
 #
 
+
 /*PACKLAYER()打包层 函数*/
 > ``` C
 > 
 > ```
 #
+
 
 /*FINDLAYER() 通过检查未打包的盒子找到最合适的层厚值 函数*/
 > ``` C
@@ -276,17 +323,20 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > ```
 #
 
+
 /*FINDBOX() 找到最好fit当前缝隙的盒子 函数*/
 > ``` C
 > 
 > ```
 #
 
+
 /*ANALYZEBOX(HMX, HY, HMY, HZ, HMZ, DIM1, DIM2, DIM3) 函数*/
 > ``` C
 > 
 > ```
 #
+
 
 /*FINDSMALLESTZ() 用smallest z 值决定当前层 盒子间隙 函数*/
 > ``` C
