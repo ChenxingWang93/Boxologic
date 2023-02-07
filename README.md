@@ -337,6 +337,72 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > 
 > /*初始化 第一个& 唯一一个到层's X &Z 值的节点 */
 > Initialize the first &only node to the layer's X and Z values:
+>     /*废料优先.*/
+>     SCRAPFIRST.CUMX=PX;SCRAPFIRST.CUMZ=0;
+> Perform an infinite loop unless 'Q' is typed to quit{
+>     /**/
+>     Check the keyboard input, if 'Q' is hit, exit the loop and RETURN;
+>     
+>     /**/
+>     To find the gap with the least Z value in the layer call FINDSMALLESTZ();
+>     
+>     /*情况-1*/
+>     SITUATION-1:
+>     /*如果缝隙 的两侧都没有盒子 则do*/
+>     if there is no box on the both sides of the gap do {
+>         /*计算缝隙的 X &Z 维值*/
+>         calculate the gap's X &Z dimensions;
+>         
+>         /*通过查看以下参数为缝隙找到最合适的盒子*/
+>         to find the most suitable boxes to the gap found, by looking at;
+>         
+>             /*缝隙的x 维度：LENX*/
+>             the X-dimension of the gap: LENX,
+>             
+>             /*缝隙的层厚：LAYERTHICKNESS*/
+>             layerthickness of the gap: LAYERTHICKNESS,
+>             
+>             /*距离缝隙的最大可用厚度：REMAINPY*/
+>             maximum available thickness to the gap: REMAINPY,
+>             
+>             /*距离缝隙的最大可用z 轴：LPZ*/
+>             maximum available Z dimension to the gap: LPZ;
+>             
+>             /*call FINDBOX(LENX,LAYERTHICKNESS,REMAINPY,LPZ,LPZ)函数*/
+>             call FINDBOX(LENX,LAYERTHICKNESS,REMAINPY,LPZ,LPZ);
+>             
+>             /*通过call CHECKFOUND() 函数 检查由FINDBOX() 函数 找到的盒子*/
+>             Check on the boxes found by the FINDBOX() function by calling CHECKFOUND();
+>             
+>             /*如果层的打包完成，则退出循环*/
+>             If the packing of the layer is finished, exit the loop;
+>             
+>             /*如果层的边缘是被拉平的，则到下一个循环的 第一行*/
+>             If the edge of the layer is evened, go to the first line of the next loop;
+>             
+>             /*在链列表linked list中添加 一个新节点 显示正在被打包层的边缘的拓扑结构*/
+>             Add a new node to the linked list showing the topology of the edge of the currently being packed layer after packing a new box, and set all the necessary variables and pointers properly;
+>             To check the hundred percent packing condition,
+>             call VOLUMECHECK();
+>     }
+>     
+>     /*情况-2*/
+>     SITUATION-2:
+>     /*如果缝隙的左侧 没有盒子*/
+>     
+>     If there is no box on the right side of the gap do {
+>         /*计算缝隙的 X &Z 维值*/
+>         Calculate the gap's X & Z dimensions;
+>         
+>         /*通过查看以下参数为缝隙找到最合适的盒子*/
+>         To find the most suitable boxes to the gap found, by looking at;
+>         
+>             /*缝隙的x 的方向长度：LENX*/
+>             the X-dimension of the gap: LENX,
+>             
+>     }
+> }
+>     
 > ```
 #
 
