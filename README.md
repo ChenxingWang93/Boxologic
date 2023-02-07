@@ -612,14 +612,49 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 
 /*ANALYZEBOX(HMX, HY, HMY, HZ, HMZ, DIM1, DIM2, DIM3) 函数*/
 > ``` C
+> FUNCTION ANALYZEBOX(HMX, HY, HMY, HZ, HMZ, DIM1, DIM2, DIM3);
+> /*如果给定盒子的所有维度 fit 缝隙中的最大空间*/
+> (If all dimensions of the given box fit the maximum space in the gap:)
+> /**/
+> If(DIM1<=HMX and DIM2<=HMY and DIM3<=HMZ) do {
+>     /*如果盒子的 当前朝向的 y轴方向 fits 缝隙的层厚*/
+>     (If the y-dimension of the current orientation of the box fits to the gap's layer thickness:)
 > 
+>     /*DIM2<=缝隙的Y方向值*/
+>     If(DIM2<=HY)do {
+>         /*如果当前盒子 相比较前一个选择的 更好fit y-维度 保留当前 盒子的索引 在变量BOXI 中*/
+>         If the current box is a better fit in respect to its y-dimension compared to the one selected before, keep the index of the current box in the variable BOXI;
+> 
+>         /*如果当前盒子 相比较前一个选择的 有相同y-维度，相比较前一个选择的 当前盒子更好 fit x 维度 保留 当前盒子的索引 在变量 BBOXI 中*/
+> If the current box has the same y-dimension as the y-dimension of the selected one before, and the current box is a better fit in respect to its x-dimension compared to the selected one before, keep the index of the current box in the variable BBOXI;
+> 
+>         /*如果当前盒子 相比较前一个选择的 有相同的y and x-dimensions，相比较前一个选择的 当前的盒子更好fit z-dimension 保留当前 盒子的索引 在变量 BBOXI 中*/
+>         If the current box has the same y and x-dimensions as the y and x-dimensions of the selected one before, and the current box is a better fit in respect to its z-dimension compared to the one selected before, keep the index of the current box in the variable BBOXI;
+> 
+>     }
+>     /*如果盒子当前朝向的y-dimension 大于 缝隙的层厚值*/
+>     (If the y-dimension of the current orientation of the box is bigger than the gap's layer thickness:)
+>     
+>     /*>缝隙的Y方向值*/
+>     If(DIM2>HY) do {
+>         /*如果当前盒子 相比较前一个选择的 更好fit y-dimension，保留当前 盒子的索引 在变量 BBOXI 中*/
+>         If the current box is a better fit in respect to its y-dimension compared to the one selected before, keep the index of the current box in the variable BBOXI;
+>         
+>         /*如果当前盒子 相比较前一个选择的 有相同y-维度，相比较前一个选择的 当前盒子更好 fit x 维度 保留 当前盒子的索引 在变量 BBOXI 中*/
+>         If the current box has the same y-dimension as the y-dimension of the selected one before, and the current box is a better fit in respect to its x-dimension compared to the selected one before, keep the index of the current box in the variable BBOXI;
+>         
+>         /*如果当前盒子 相比较前一个选择的 有相同的y and x-dimensions，相比较前一个选择的 当前的盒子更好fit z-dimension 保留当前 盒子的索引 在变量 BBOXI 中*/
+>         If the current box has the same y and x-dimensions as the y and x- dimensions of the selected one before, and the current box is a better fit in respect to its z-dimension compared to the one selected before, keep the index of the current box in the variable BBOXI;
+>         
+>     }
+> }
+> RETURN;
 > ```
 #
 
 
 /*FINDSMALLESTZ() 用smallest z 值决定当前层 盒子间隙 函数*/
 > ``` C
-> 
 > ```
 #
 
