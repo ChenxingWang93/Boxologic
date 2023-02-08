@@ -159,8 +159,9 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > Get time(FINISH);
 > 
 > /*使用找到的参数，打包找到的最优解，报告控制器*/
-> Using the parameters found, pack the best solution found, report to the console
->   and to an output text file by calling REPORT();
+> Using the parameters found, pack the best solution found, report to the console and to an output text file by calling REPORT();
+> 
+> /*等待用户的键入*/
 > Wait until a keystroke entered by the user;
 > End;
 > ```
@@ -243,7 +244,24 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >   
 >   /*LAYERLIST 变量为0，指针LAYERSINDEX为1，LAYERS[]阵列中的第一个值为开始*/
 >   For LAYERSINDEX=1 to LAYERLISTLEN{
+>   
+>       /*LAYERS[] 阵列第一个值作为开始*/
+>       Get the first value of the LAYERS[] array as the starting
 >       
+>           /*层厚 值*/
+>           LAYERTHICKNESS value:
+>           
+>           /*层厚 值 = 层[层索引].层三维*/
+>           LAYERTHICKNESS=LAYERS[LAYERSINDEX].LAYERDIM
+>           
+>       /*把所有盒子打包状态 设定为 0*/
+>       Set all boxes' packed status to 0:
+>       
+>           /*从[1]到[TBN] BOXLIST[X].PACKST=0,设定为未打包*/
+>           For X=1 to TBN do BOXLIST[X].PACKST=0;
+>       do {
+>           /*here*/
+>       }   
 >   }
 > }
 > ```
