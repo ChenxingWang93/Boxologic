@@ -260,8 +260,33 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >           /*从[1]到[TBN] BOXLIST[X].PACKST=0,设定为未打包*/
 >           For X=1 to TBN do BOXLIST[X].PACKST=0;
 >       do {
->           /*here*/
->       }   
+>           Set the variable that shows remaining unpacked potential second layer height in the current layer:
+>             
+>           /*设定 展示剩余未打包的 可能的第二层高度 到当前的层 的变量 LAYERINLAYER*/
+>           LAYERINLAYER=0;
+>
+>           /*设定🚩变量 展示 当前层的打包是否完成 LAYERDONE=0;*/
+>           Set the flag variable that shows packing of the current layer is finished or not: LAYERDONE=0;
+>
+>           /*call PACKLAYER() 函数，打包层，如果响应了内存错误，则退出程序；*/
+>           Call PACKLAYER(), to pack the layer, and if a memory error is responded, exit the program;
+>           
+>           /*如果在当前层中有一个高度可用来打包，在当前层执行另一个层打包*/
+>           If LAYERINLAYER≠ 0 do {
+>               /*获取当前层可打包的高度，并作为待打包的高度*/
+>               Get the height available for packing in the current layers as the layer thickness to be packed:
+>               LAYERTHICKNESS=LAYERINLAYER;
+>               
+>               /*call PACKLAYER() 函数打包层，如果内存错误响应，则退出程序*/
+>               Call PACKLAYER(),to pack the layer, and if a memory error is responded, exit the program;
+>           }
+>           /*决定最合适的层高 适配到托盘 剩余未打包高度*/
+>           Call FINDLAYER(REMAINPY) to determine the most suitable layer height fitting in the remaining unpacked height of the pallet；
+>       }while PACKING≠ 0;
+>       /*如果迭代的体积利用率优于当前最优值 &不会退出迭代，保留参数：(托盘朝向，利用率，指针 指向在LAYERS[]阵列中 最初层高)*/
+>       If the volume utilization of the current iteration is better than the best so far, and the iterations were not quit, keep the parameters:(Pallet orientation,utilization,and the index of the initial layer height in the LAYERS array);
+>       /*如果100%打包完成，退出迭代并返回*/
+>       If a hundred percent packing was found, exit doing iteration and RETURN;
 >   }
 > }
 > ```
