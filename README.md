@@ -734,31 +734,142 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 
 /*CHECKFOUND() 决定pack 哪个盒子 函数*/
 > ``` C
+> /*决定pack 哪一个盒子*/
+> FUNCTION CHECKFOUND();
 > 
+> /*如果一个 盒子 fit in 当前层 厚度被找到，保留它的索引& 朝向用来打包*/
+> (If a box fitting in the current layer thickness has been found, keep its index and orientation for packing:)
+> 
+> /**/
+> If BOXI≠0 then do {CBOXI=BOXI; CBOXX=BOXX; CBOXY=BOXY; CBOXZ=BOXZ};
+> Else {
+>       /*如果一个 y维值 大于当前层厚 的盒子被找到 &当前层的边缘比选中的更平 则选择盒子设定为 LAYERINLAYER*/
+>       If a box with a bigger y-dimension than the current layer thickness has been found and the edge of the current layer is even then select that box and set LAYERINLAYER
+>       
+>       /*在当前层 的第二层的打包 的变量 更新 LAYERTHICKNESS = BBOXY*/
+>       variable for a second layer packing in the current layer and update the LAYERTHICKNESS = BBOXY;
+>       Else {
+>             /*如果 当前 层的边缘 没有缝隙，层的打包则完成 LAYERDONE=1*/
+>             If there is no gap in the edge of the current layer, packing of the layer is done:LAYERDONE=1;
+>             
+>             /*则，因为没有可以 fitting 的盒子到当前 选择的缝隙，跳过缝隙，通过安排& 更新必要的节点和变量来跳过& 填平缝隙*/
+>             Else:Since there is no fitting box to the currently selected gap, skip that gap and even it by arranging and updating the necessary nodes and variables;
+>       }
+> }
+> RETURN;
 > ```
 #
 
 /*VOLUMECHECK() 检查打包情况 函数*/
 > ``` C
+> /*函数 VOLUMECHECK() 检查打包情况*/
+> FUNCTION VOLUMECHECK();
+> Mark the current box as packed: BOXLIST[CBOXI].PACKED=1;
 > 
+> /*只要被打包就保留当前盒的朝向*/
+> Keep the orientation of the current box as it is packed:
+>     BOXLIST[CBOXI].PACKX=CBOXX;
+>     BOXLIST[CBOXI].PACKY=CBOXY;
+>     BOXLIST[CBOXI].PACKZ=CBOXZ;
+> /*更新总体打包体积*/
+> Update the total packed volume:
+>     PACKEDVOLUME=PACKEDVOLUME+BOXLIST[CBOXI].VOL;
+> /*更新打包盒的数量*/
+> Update the number of boxes packed:PACKEDNUMBOX=PACKEDNUMBOX+1;
+> /*迭代 函数 完成后执行 best so far 打包*/
+> (If performing the best so far packing after being done with the iterations:)
+> If PACKINGBEST=1 do
 > ```
 #
 
 /*GRAPHUNPACKEDOUT() 检查打包情况 函数*/
 > ``` C
+> /*如果这个函数被called 是 for 可视化数据，write 必要信息到文件 “VISUAL”*/
+> If this function is called for a visualization data out, write the necessary information to the file "VISUAL";
 > 
+> /*否则 合并未打包盒信息 到报告文件末端*/
+> Else merge the unpacked box information to the end of the report file;
+> RETURN;
 > ```
 #
 
 /*OUTPUTBOXLIST() 写入打包信息到文件 函数*/
 > ``` C
+> OUTPUTBOXLIST();
 > 
+> /*由使用者输入 转换坐标系统每个盒子的朝向，从最优解到 托盘朝向*/
+> Transform the coordinate system and orientation of every box from the best solution format to the pallet orientation entered by the user in the input text file by looking at the value of the variable BESTVARIANT;
+> 
+> /*转换 的盒子信息（打包后的坐标& 三维）写入 报告REPORT文件*/
+> Write the transformed box information(coordinates and the dimensions as is has been packed) to the REPORT file;
+> 
+> RETURN;
 > ```
 #
 
 /*REPORT() 函数*/
 > ``` C
+> FUNCTION REPORT();
+> /*设定必要变量 开始找到正确的 最佳打包*/
+> Set the necessary variables to start the best packing found properly;
 > 
+> /*根据 BESTVARIANT 值，决定托盘朝向*/
+> According to the BESTVARIANT value, determine the orientation of the pallet;
+> 
+> /*通知其他函数 正在执行 最优打包*/
+> To tell other functions that the best packing found is being performed:
+>     PACKINGBEST=1;
+>     
+> /*将 最优解 写入 可视化数据文件 头部信息*/
+> Write the header information about the best solution found to the visualization data file
+>     "VISUAL";
+>     
+> /*将 最优解 写入 报告数据文件 头部信息*/
+> Write the header information about the best solution found to the report data file;
+> 
+> /*通过 call 函数 LISTCANDITLAYERS() 罗列所有 可能的候选值 */
+> List all possible candidate values by calling LISTCANDITLAYERS();
+> 
+> /*通过函数QSORT 升序 分类 阵列LAYERS 关于其的 LAYEREVAL 字段 */
+> Sort the array LAYERS in respect to its LAYEREVAL fields in increasing order by using QSORT;
+> 
+> /*将所有盒子 打包状态 设定为 0 For X=1 to TBN do BOXLIST[X].PACKST=0;*/
+> Set all boxes's packed status to 0: For X=1 to TBN do BOXLIST[X].PACKST=0;
+> 
+> /*执行*/
+> do {
+>     /*设定 变量 展示 剩余未打包 的第二层高度 到当前高度 LAYERINLAYER=0;*/
+>     Set the variable that shows remaining unpacked potential second layer height in the current layer: LAYERINLAYER=0;
+>     
+>     /*设定 🚩变量 展示 当前层的打包是否完结：LAYERDONE=0;*/
+>     Set the flag variable that shows packing of the current layer is finished or not:
+>         LAYERDONE=0;
+>         
+>     /*call PACKLAYER() 函数 来打包层，如果内存错误响应，退出程序;*/
+>     Call PACKLAYER(), to pack the layer, and if a memory error is responded, exit the program;
+>     
+>     /*如果有 一个高度 可用来 packing 当前层，在当前层执行另一个 层打包的动作*/
+>     If there is a height available for packing in the current layer, perform another layer packing in the current layer:
+>     
+>     /**/
+>     If LAYERINLAYER*0 do {
+>         /**/
+>         Get the height available for packing in the current layer as the layer thickness to be packed: LAYERTHICKNESS=LAYERINLAYER;
+>         
+>         /*Call 函数PACKLAYER() 打包层，如果内存错误响应，退出程序*/
+>         Call PACKLAYER(), to pack the layer, and if a memory error is responded, exit the program;
+>     }
+>     Call FINDLAYER(REMAINPY) to determine the most suitable layer height fitting in the remaining unpacked height of the pallet;
+> } While PACKINGS;
+> /*取得开始时间 结束时间 的差值*/
+> Get the difference of the start time and the finish time;
+> 
+> /*关闭 可视化数据文件 & 报告文件；*/
+> Close both the visualization data file and the report file;
+> 
+> /*写入 有关打包 的信息到console*/
+> Write all the information about packing to the console;
+> RETURN;
 > ```
 #
 
