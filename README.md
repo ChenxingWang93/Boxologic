@@ -566,7 +566,8 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 
 /*FINDLAYER() 通过检查未打包的盒子找到最合适的层厚值 函数*/
 > ``` C
-> 
+> Function FINDLAYER();
+> /**/
 > ```
 #
 
