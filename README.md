@@ -567,7 +567,62 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 /*FINDLAYER() 通过检查未打包的盒子找到最合适的层厚值 函数*/
 > ``` C
 > Function FINDLAYER();
-> /**/
+> /*设定 总评价值 到一个big number*/
+> 
+> Set the overall evaluation value to a big number:EVAL=1000000;
+> /*从 X=1 到 TBN*/
+> For X=1 to TBN {
+> 
+> /*如果 盒子数量 X 被打包 继续下一个loop*/
+> If the box number X has already been packed continue with the next loop:
+> 
+>     /*如果 BOXLIST[X].PACKST≠0 (盒子打包状态是未打包) 继续*/
+>     If BOXLIST[X].PACKST≠0 continue；
+>     
+> /*一次获得 一个 盒子的一个维度*/
+> Get each dimension of each box, one at a time by doing:
+> For Y=1 to 3 {
+>     If Y=1 do {
+>         EXDIM=BOXLIST[X].DIM1;
+>         DIMEN2=BOXLIST[X].DIM2;
+>         DIMEN3=BOXLIST[X].DIM3;
+>     }
+>     If Y=2 do {
+>         EXDIM=BOXLIST[X].DIM2;
+>         DIMEN2=BOXLIST[X].DIM1;
+>         DIMEN3=BOXLIST[X].DIM3;
+>     }
+>     If Y=3 do {
+>         EXDIM=BOXLIST[X].DIM3;
+>         DIMEN2=BOXLIST[X].DIM1;
+>         DIMEN3=BOXLIST[X].DIM2;
+>     }
+>     
+>     /*如果被检查盒子的任意维度不能 fit 托盘的对应 维度，退出循环& 继续下一个循环*/
+>     If any of the dimensions of the box being examined cannot fit into the pallet's respective dimensions, exit this loop and continue with the next loop;
+>     
+>     /*EXDIM 的评估值 evaluation value 设定为0*/
+>     Set the evaluation value of the EXDIM to 0 by doing LAYEREVAL=0;
+>     For z=1 to TBN do {
+>     
+>         /*得到每个盒子三维值距离EXDIM 的最近三维值，通过检查差值（dimension与EXDIM的）的绝对值，选择最小值；把这个值赋予 DIMDIF 这个变量*/
+>         Get the closest dimension value of each box to the EXDIM by looking at the absolute values of differences between each dimension and EXDIM, and selecting the smallest value; and set the variable DIMDIF to this value.
+>         
+>         /*累加这些值*/
+>         Add those values cumulatively by doing:
+>             LAYEREVAL=LAYEREVAL+DMDIF;
+>     }
+>     /*如果刚刚检查的维度有较小的评价值，则保留这个维度*/
+>     If the dimension that has just been examined has a smaller evaluation value, keep that dimension:
+>     
+>     /*如果LAYEREVAL 的值小于 big number，则把变量LAYEREVAL的值赋给 EVAL，且LAYERTHICKNESS-EXDIM*/
+>     If(LAYEREVAL<EVAL)do {
+>         EVAL=LAYEREVAL;
+>         LAYERTHICKNESS-EXDIM;
+>     }
+>   }
+> }
+> RETURN;
 > ```
 #
 
