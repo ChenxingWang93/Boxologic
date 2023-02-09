@@ -234,7 +234,7 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > If exists, open the file FILENAME;
 > 
 > /*否则，告诉用户“无法打开 文件 XXX”*/
->   Else{Tell the user "Cannot open the file FILENAME";end;}
+> Else{Tell the user "Cannot open the file FILENAME";end;}
 >   
 > /*读取输入文件的第一行 &设定托盘的三维变量 XX, YY, ZZ;*/
 > Read the first line of the input file and set the pallet dimension variables XX, YY, ZZ;
@@ -352,16 +352,20 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >       }
 >       
 >       /*如果被检查盒子的任意维度不能 fit 托盘的对应 维度，退出循环& 继续下一个循环*/
->       If any of the dimensions of the box being examined cannot fit into the pallet's respective dimensions, exit this loop and continue with the next loop;
+>       If any of the dimensions of the box being examined cannot fit into the 
+>               pallet's respective dimensions, exit this loop and continue with the 
+>               next loop;
 >       
 >       /*如果EXDIM与之前检验 三维 长度相同，退出循环 &继续下一个循环*/
->       If EXDIM is the same as any of previously examined dimension lengths, exit this loop and continue with the next loop;
+>       If EXDIM is the same as any of previously examined dimension lengths, 
+>               exit this loop and continue with the next loop;
 >       
 >       /*设定EXDIM 的评估值evaluation value 为 0*/
 >       Set the evaluation value of the EXDIM to 0 by doing LAYEREVAL=0;
 >       
 >       /*从 Z=1 到 TBN 盒子的总计数量*/
 >       For Z=1 to TBN do {
+>       
 >           /*取得每个盒子最近的维度值到EXDIM*/ 
 >           Get the closest dimension value of each box to the EXDIM
 >           
@@ -409,9 +413,11 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 > 
 > /*初始化 第一个& 唯一一个到层's X &Z 值的节点 */
 > Initialize the first &only node to the layer's X and Z values:
+> 
 >     /*废料优先.*/
 >     SCRAPFIRST.CUMX=PX;SCRAPFIRST.CUMZ=0;
 > Perform an infinite loop unless 'Q' is typed to quit{
+> 
 >     /**/
 >     Check the keyboard input, if 'Q' is hit, exit the loop and RETURN;
 >     
@@ -423,6 +429,7 @@ Appendix A - Pseudo-codes of the Functions 函数的伪代码
 >     SITUATION-1:
 >     /*如果缝隙 的两侧都没有盒子 则do*/
 >     if there is no box on the both sides of the gap do {
+>     
 >         /*计算缝隙的 X &Z 维值*/
 >         calculate the gap's X &Z dimensions;
 >         
