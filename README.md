@@ -67,6 +67,33 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 > Boxlist[8]=(     0,   1,      60,    595,    1.5,     0,      0,      0,        0,        0,        0,      53550)
 > ```
 
+> ``` C
+> /**/
+> Layers[X]=(Layerdim, Layereval)
+> Abs(70-70)+Abs(70-70)+Abs(70-70)+Abs(70-48)+Abs(70-48)+Abs(70-52)+Abs(70-52)+Abs(70-52)=98
+> 
+> Layers[1]=(70, 98)
+> Abs(24-24)+Abs(24-24)+Abs(24-24)+Abs(24-14)+Abs(24-14)+Abs(24-36)+Abs(24-36)+Abs(24-36)=56
+> 
+> Layers[2]=(24, 56)
+> Abs(14-24)+Abs(14-24)+Abs(14-24)+Abs(14-24)+Abs(14-14)+Abs(14-40)+Abs(14-40)+Abs(14-40)=106
+> 
+> Layers[3]=(14, 106)
+> Abs(48-70)+Abs(4-70)+Abs(48-70)+Abs(48-70)+Abs(48-48)+Abs(48-40)+Abs(48-40)+Abs(48-40)=100
+> 
+> Layers[4]=(48, 100)
+> Abs(40-24)+Abs(40-24)+Abs(40-24)+Abs(40-24)+Abs(40-48)+Abs(40-48)+Abs(40-40)+Abs(40-40)=80
+> 
+> Layers[5]=(40, 80)
+> Abs(52-70)+Abs(52-70)+Abs(52-70)+Abs(52-70)+Abs(52-48)+Abs(52-48)+Abs(52-52)+Abs(52-52)=80
+> 
+> Layers[6]=(52, 80)
+> Abs(36-24)+Abs(36-24)+Abs(36-24)+Abs(36-24)+Abs(36-48)+Abs(36-48)+Abs(36-36)+Abs(36-36)=72
+> 
+> Layers[7]=(36, 72)
+> ```
+
+
 核心的打包程序函数
 |FUNCTION 函数|PURPOSE 目标|
 |------------|------------|
@@ -79,6 +106,7 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 |Report()    |复制best-so-far packing                      |
 |Outputboxlist()|Writes 打包信息到文件                       |
 |Graphunpackedout()|Writes 打包顺序                         |
+
 
 Findbox 函数 使用 Analyzebox 函数 分析未打包的盒子。每个不同朝向 的未打包盒子，Analyzebox 函数参数都有:
 > ``` C
@@ -96,6 +124,7 @@ Findbox 函数 使用 Analyzebox 函数 分析未打包的盒子。每个不同�
 
 ### pseudo-codes of the functions函数伪代码
 Appendix A - Pseudo-codes of the Functions 函数的伪代码
+
 
 > ``` C
 > MAIN
