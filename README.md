@@ -68,21 +68,20 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 > Boxlist[8]=(     0,   1,      60,    595,    1.5,     0,      0,      0,        0,        0,        0,      53550)
 > ```
 
-(Figure 3-3) 创建 Boxlist[] Array
+(Figure 3-3) 创建 ***Boxlist[] Array***
 
-输入过程完成后，model创建一个 层厚 阵列named Layers[]. 这个阵列包含盒子每个 独特的 维度除了 pallet当前朝向的 Y 维度单独 evaluation values. Layers[] array 创建了 pallet 的每个朝向。每个entry 都是可能的layer 厚度值用来做iterations 并以托盘当前的方向开始打包。
+输入过程完成后，model创建一个 层厚阵列 ***Layers[]***. 这个阵列包含盒子每个 独特的 维度除了 pallet当前朝向的 Y 维度单独 evaluation values. ***Layers[] array*** 创建了 pallet 的每个朝向。每个entry 都是可能的layer 厚度值用来做iterations 并以托盘当前的方向开始打包。
 
-一个 layerdim 的 evaluation 值代表一旦选择这个值作为layer thickness所有其他盒子离这个layer height的高度，模型会以以下形式计算这个评价值evaluation value：	
+一个 ***layerdim*** 的 ***evaluation*** 值代表一旦选择这个值作为***layer thickness***所有其他盒子离这个layer height的高度，模型会以以下形式计算这个评价值***evaluation value:***
 
-取回一个盒子以及他的三维dimension。检查这个阵列array 中之前设定的layerdim values，如果这是一个不同的length& 少于当前朝向pallet的y dimension 
-在layerdim array 中存储新元素。
+取回一个盒子以及他的三维dimension。检查这个阵列***array*** 中之前设定的***layerdim values***，如果这是一个不同的***length***& 少于当前朝向pallet的y dimension 
+在***layerdim array*** 中存储新元素。
 
-然后它会go through 每一个盒子 取回它接近layerdim 值的三维 dimension 值，
-并累加dimension值 与layerdim 值的 差值difference 的绝对值。
+然后它会go through 每一个盒子 取回它接近***layerdim*** 值的三维 ***dimension*** 值，并累加***dimension值*** 与***layerdim 值***的 ***差值difference***的绝对值。
 
-带有 smallest layereval weight value 的layerdim value 是最合适层厚值layer thickness value
+带有 ***smallest layereval weight value*** 的***layerdim value*** 是最合适层厚值***layer thickness value***
 这个值应该产生平滑层高
-例子， Layers[]array 阵列的计算，pallet朝向 以X=104, Y=96, Z=84朝向为例子
+例子， ***Layers[]array*** 阵列的计算，pallet朝向 以X=104, Y=96, Z=84朝向为例子
 
 
 输入过程完成
