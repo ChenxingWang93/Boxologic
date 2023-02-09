@@ -54,6 +54,39 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 ### 算法何谓启发式 How Does The Heuristic Work?
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/31954987/213875993-3a68e536-2fb1-416f-a7a4-31d07d9d7c6a.png">
 
+
+> ``` C
+> Variable assignments:                                                                          XX=104;YY=96;ZZ=84;
+> Boxlist[X]=(Packst,   N,    Dim1,   Dim2,   Dim3,   Cox,    Coy,    Coz,    Packx,    Packy,    Packz,        Vol)
+> Boxlist[1]=(     0,   2,   260.7,    897,    1.5,     0,      0,      0,        0,        0,        0,  350771.85)
+> Boxlist[2]=(     0,   2,   260.7,    897,    1.5,     0,      0,      0,        0,        0,        0,  350771.85)
+> Boxlist[3]=(     0,   2,   260.7, 1399.5,    1.5,     0,      0,      0,        0,        0,        0, 547274.475)
+> Boxlist[4]=(     0,   2,   260.7, 1399.5,    1.5,     0,      0,      0,        0,        0,        0, 547274.475)
+> Boxlist[5]=(     0,   1,   260.7,  920.7,    1.5,     0,      0,      0,        0,        0,        0, 360039.735)
+> Boxlist[6]=(     0,   1,     910,   2700,    1.5,     0,      0,      0,        0,        0,        0,    3685500)
+> Boxlist[7]=(     0,   1,     910,   2460,    1.5,     0,      0,      0,        0,        0,        0,    3357900)
+> Boxlist[8]=(     0,   1,      60,    595,    1.5,     0,      0,      0,        0,        0,        0,      53550)
+> ```
+
+(Figure 3-3) 创建 Boxlist[] Array
+
+输入过程完成后，model创建一个 层厚 阵列named Layers[]. 这个阵列包含盒子每个 独特的 维度除了 pallet当前朝向的 Y 维度单独 evaluation values. Layers[] array 创建了 pallet 的每个朝向。每个entry 都是可能的layer 厚度值用来做iterations 并以托盘当前的方向开始打包。
+
+一个 layerdim 的 evaluation 值代表一旦选择这个值作为layer thickness所有其他盒子离这个layer height的高度，模型会以以下形式计算这个评价值evaluation value：	
+
+取回一个盒子以及他的三维dimension。检查这个阵列array 中之前设定的layerdim values，如果这是一个不同的length& 少于当前朝向pallet的y dimension 
+在layerdim array 中存储新元素。
+
+然后它会go through 每一个盒子 取回它接近layerdim 值的三维 dimension 值，
+并累加dimension值 与layerdim 值的 差值difference 的绝对值。
+
+带有 smallest layereval weight value 的layerdim value 是最合适层厚值layer thickness value
+这个值应该产生平滑层高
+例子， Layers[]array 阵列的计算，pallet朝向 以X=104, Y=96, Z=84朝向为例子
+
+
+输入过程完成
+
 > ``` C
 > /**/
 > Layers[X]=(Layerdim, Layereval)
@@ -80,19 +113,6 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 > Layers[7]=(36, 72)
 > ```
 
-
-> ``` C
-> Variable assignments:                                                                          XX=104;YY=96;ZZ=84;
-> Boxlist[X]=(Packst,   N,    Dim1,   Dim2,   Dim3,   Cox,    Coy,    Coz,    Packx,    Packy,    Packz,        Vol)
-> Boxlist[1]=(     0,   2,   260.7,    897,    1.5,     0,      0,      0,        0,        0,        0,  350771.85)
-> Boxlist[2]=(     0,   2,   260.7,    897,    1.5,     0,      0,      0,        0,        0,        0,  350771.85)
-> Boxlist[3]=(     0,   2,   260.7, 1399.5,    1.5,     0,      0,      0,        0,        0,        0, 547274.475)
-> Boxlist[4]=(     0,   2,   260.7, 1399.5,    1.5,     0,      0,      0,        0,        0,        0, 547274.475)
-> Boxlist[5]=(     0,   1,   260.7,  920.7,    1.5,     0,      0,      0,        0,        0,        0, 360039.735)
-> Boxlist[6]=(     0,   1,     910,   2700,    1.5,     0,      0,      0,        0,        0,        0,    3685500)
-> Boxlist[7]=(     0,   1,     910,   2460,    1.5,     0,      0,      0,        0,        0,        0,    3357900)
-> Boxlist[8]=(     0,   1,      60,    595,    1.5,     0,      0,      0,        0,        0,        0,      53550)
-> ```
 
 
 核心的打包程序函数
