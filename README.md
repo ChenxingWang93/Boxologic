@@ -35,7 +35,7 @@ A set of C programs that calculate the best fit for boxes on a pallet, and visua
 |-------|----|-----------|
 |1.     |*pre|: Pointer that keeps the address of the previous entry, 用指针来保留之前入口的地址，|
 |2.     |Cumx|: Keeps the x-coordinate of the gap's right corner, 保持缝隙的x-coordinate处在右上角，|
-|3.     |Cumz|: Keeps the z-coordinate of the gap's right corner, 保持缝隙的x-coordinate处在右上角，|
+|3.     |Cumz|: Keeps the z-coordinate of the gap's right corner, 保持缝隙的z-coordinate处在右上角，|
 |4.     |*pos|: Pointer that keeps the address of the following entry. 用指针来保留随后入口的地址，|
 
 
